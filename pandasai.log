@@ -1,0 +1,3847 @@
+2025-07-25 15:23:52 [INFO] Question: How many $2 bn movies were released before 2020?
+2025-07-25 15:23:52 [INFO] Running PandasAI with openai LLM...
+2025-07-25 15:23:52 [INFO] Prompt ID: 1793cca9-1a00-442e-a66b-cf1ff93f083a
+2025-07-25 15:23:52 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-07-25 15:23:52 [INFO] Executing Step 0: ValidatePipelineInput
+2025-07-25 15:23:52 [INFO] Executing Step 1: CacheLookup
+2025-07-25 15:23:52 [INFO] Executing Step 2: PromptGeneration
+2025-07-25 15:23:52 [INFO] Using prompt: dfs[0]:
+  name: null
+  description: null
+  type: pd.DataFrame
+  rows: 50
+  columns: 6
+  schema:
+    fields:
+    - name: Rank
+      type: int64
+      samples:
+      - 28
+      - 5
+      - 45
+    - name: Peak
+      type: object
+      samples:
+      - '14'
+      - '3'
+      - 23RK
+    - name: Title
+      type: object
+      samples:
+      - Beauty and the Beast
+      - Jurassic Park
+      - Barbie
+    - name: Worldwide gross
+      type: object
+      samples:
+      - $1,347,280,838
+      - $1,342,139,727
+      - $1,495,696,292
+    - name: Year
+      type: int64
+      samples:
+      - 2016
+      - 2013
+      - 2014
+    - name: Ref
+      type: object
+      samples:
+      - '[# 19][# 20]'
+      - '[# 61][# 38]'
+      - '[# 50][# 51]'
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many $2 bn movies were released before 2020?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2025-07-25 15:23:52 [INFO] Executing Step 3: CodeGenerator
+2025-07-25 15:23:57 [INFO] HTTP Request: POST https://aipipe.org/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-25 15:23:57 [INFO] Prompt used:
+            dfs[0]:
+  name: null
+  description: null
+  type: pd.DataFrame
+  rows: 50
+  columns: 6
+  schema:
+    fields:
+    - name: Rank
+      type: int64
+      samples:
+      - 28
+      - 5
+      - 45
+    - name: Peak
+      type: object
+      samples:
+      - '14'
+      - '3'
+      - 23RK
+    - name: Title
+      type: object
+      samples:
+      - Beauty and the Beast
+      - Jurassic Park
+      - Barbie
+    - name: Worldwide gross
+      type: object
+      samples:
+      - $1,347,280,838
+      - $1,342,139,727
+      - $1,495,696,292
+    - name: Year
+      type: int64
+      samples:
+      - 2016
+      - 2013
+      - 2014
+    - name: Ref
+      type: object
+      samples:
+      - '[# 19][# 20]'
+      - '[# 61][# 38]'
+      - '[# 50][# 51]'
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many $2 bn movies were released before 2020?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2025-07-25 15:23:57 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+
+# Extracting the necessary data from the DataFrame
+df = dfs[0]
+df['Worldwide gross'] = df['Worldwide gross'].str.replace('$', '').str.replace(',', '').astype(int)
+df['Year'] = df['Year'].astype(int)
+
+# Counting the number of $2 bn movies released before 2020
+num_2bn_movies = df[(df['Worldwide gross'] >= 2000000000) & (df['Year'] < 2020)].shape[0]
+
+# Storing the result in a dictionary
+result = {
+    "type": "string",
+    "value": f"The number of $2 billion movies released before 2020 is: {num_2bn_movies}"
+}
+            ```
+            
+2025-07-25 15:23:57 [INFO] Executing Step 4: CachePopulation
+2025-07-25 15:23:57 [INFO] Executing Step 5: CodeCleaning
+2025-07-25 15:23:57 [INFO] 
+Code running:
+```
+df = dfs[0]
+df['Worldwide gross'] = df['Worldwide gross'].str.replace('$', '').str.replace(',', '').astype(int)
+df['Year'] = df['Year'].astype(int)
+num_2bn_movies = df[(df['Worldwide gross'] >= 2000000000) & (df['Year'] < 2020)].shape[0]
+result = {'type': 'string', 'value': f'The number of $2 billion movies released before 2020 is: {num_2bn_movies}'}
+        ```
+2025-07-25 15:23:57 [INFO] Executing Step 6: CodeExecution
+2025-07-25 15:23:57 [ERROR] Failed with error: Traceback (most recent call last):
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 87, in execute
+    result = self.execute_code(input, code_context)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 172, in execute_code
+    exec(code, environment)
+  File "<string>", line 2, in <module>
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/generic.py", line 6534, in astype
+    new_data = self._mgr.astype(dtype=dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 414, in astype
+    return self.apply(
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 354, in apply
+    applied = getattr(b, f)(**kwargs)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/blocks.py", line 616, in astype
+    new_values = astype_array_safe(values, dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 238, in astype_array_safe
+    new_values = astype_array(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 183, in astype_array
+    values = _astype_nansafe(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 134, in _astype_nansafe
+    return arr.astype(dtype, copy=True)
+ValueError: invalid literal for int() with base 10: 'T2257844554'
+
+2025-07-25 15:23:57 [WARNING] Failed to execute code retrying with a correction framework [retry number: 1]
+2025-07-25 15:23:57 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2025-07-25 15:23:57 [INFO] Executing Step 0: ErrorPromptGeneration
+2025-07-25 15:23:57 [INFO] Using prompt: dfs[0]:
+  name: null
+  description: null
+  type: pd.DataFrame
+  rows: 50
+  columns: 6
+  schema:
+    fields:
+    - name: Rank
+      type: int64
+      samples:
+      - 28
+      - 5
+      - 45
+    - name: Peak
+      type: object
+      samples:
+      - '14'
+      - '3'
+      - 23RK
+    - name: Title
+      type: object
+      samples:
+      - Beauty and the Beast
+      - Jurassic Park
+      - Barbie
+    - name: Worldwide gross
+      type: object
+      samples:
+      - $1,347,280,838
+      - $1,342,139,727
+      - $1,495,696,292
+    - name: Year
+      type: int64
+      samples:
+      - 2016
+      - 2013
+      - 2014
+    - name: Ref
+      type: object
+      samples:
+      - '[# 19][# 20]'
+      - '[# 61][# 38]'
+      - '[# 50][# 51]'
+
+
+The user asked the following question:
+### QUERY
+ How many $2 bn movies were released before 2020?
+
+You generated this python code:
+df = dfs[0]
+df['Worldwide gross'] = df['Worldwide gross'].str.replace('$', '').str.replace(',', '').astype(int)
+df['Year'] = df['Year'].astype(int)
+num_2bn_movies = df[(df['Worldwide gross'] >= 2000000000) & (df['Year'] < 2020)].shape[0]
+result = {'type': 'string', 'value': f'The number of $2 billion movies released before 2020 is: {num_2bn_movies}'}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 87, in execute
+    result = self.execute_code(input, code_context)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 172, in execute_code
+    exec(code, environment)
+  File "<string>", line 2, in <module>
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/generic.py", line 6534, in astype
+    new_data = self._mgr.astype(dtype=dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 414, in astype
+    return self.apply(
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 354, in apply
+    applied = getattr(b, f)(**kwargs)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/blocks.py", line 616, in astype
+    new_values = astype_array_safe(values, dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 238, in astype_array_safe
+    new_values = astype_array(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 183, in astype_array
+    values = _astype_nansafe(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 134, in _astype_nansafe
+    return arr.astype(dtype, copy=True)
+ValueError: invalid literal for int() with base 10: 'T2257844554'
+
+
+Fix the python code above and return the new python code:
+2025-07-25 15:23:57 [INFO] Executing Step 1: CodeGenerator
+2025-07-25 15:24:00 [INFO] HTTP Request: POST https://aipipe.org/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-25 15:24:00 [INFO] Prompt used:
+            dfs[0]:
+  name: null
+  description: null
+  type: pd.DataFrame
+  rows: 50
+  columns: 6
+  schema:
+    fields:
+    - name: Rank
+      type: int64
+      samples:
+      - 28
+      - 5
+      - 45
+    - name: Peak
+      type: object
+      samples:
+      - '14'
+      - '3'
+      - 23RK
+    - name: Title
+      type: object
+      samples:
+      - Beauty and the Beast
+      - Jurassic Park
+      - Barbie
+    - name: Worldwide gross
+      type: object
+      samples:
+      - $1,347,280,838
+      - $1,342,139,727
+      - $1,495,696,292
+    - name: Year
+      type: int64
+      samples:
+      - 2016
+      - 2013
+      - 2014
+    - name: Ref
+      type: object
+      samples:
+      - '[# 19][# 20]'
+      - '[# 61][# 38]'
+      - '[# 50][# 51]'
+
+
+The user asked the following question:
+### QUERY
+ How many $2 bn movies were released before 2020?
+
+You generated this python code:
+df = dfs[0]
+df['Worldwide gross'] = df['Worldwide gross'].str.replace('$', '').str.replace(',', '').astype(int)
+df['Year'] = df['Year'].astype(int)
+num_2bn_movies = df[(df['Worldwide gross'] >= 2000000000) & (df['Year'] < 2020)].shape[0]
+result = {'type': 'string', 'value': f'The number of $2 billion movies released before 2020 is: {num_2bn_movies}'}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 87, in execute
+    result = self.execute_code(input, code_context)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 172, in execute_code
+    exec(code, environment)
+  File "<string>", line 2, in <module>
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/generic.py", line 6534, in astype
+    new_data = self._mgr.astype(dtype=dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 414, in astype
+    return self.apply(
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 354, in apply
+    applied = getattr(b, f)(**kwargs)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/blocks.py", line 616, in astype
+    new_values = astype_array_safe(values, dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 238, in astype_array_safe
+    new_values = astype_array(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 183, in astype_array
+    values = _astype_nansafe(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 134, in _astype_nansafe
+    return arr.astype(dtype, copy=True)
+ValueError: invalid literal for int() with base 10: 'T2257844554'
+
+
+Fix the python code above and return the new python code:
+            
+2025-07-25 15:24:00 [INFO] Code generated:
+            ```
+            import pandas as pd
+
+df = dfs[0]
+df['Worldwide gross'] = df['Worldwide gross'].str.replace('$', '').str.replace(',', '').astype(float)
+df['Year'] = df['Year'].astype(int)
+num_2bn_movies = df[(df['Worldwide gross'] >= 2000000000) & (df['Year'] < 2020)].shape[0]
+result = {'type': 'string', 'value': f'The number of $2 billion movies released before 2020 is: {num_2bn_movies}'}
+            ```
+            
+2025-07-25 15:24:00 [INFO] Executing Step 2: CodeCleaning
+2025-07-25 15:24:00 [INFO] 
+Code running:
+```
+df = dfs[0]
+df['Worldwide gross'] = df['Worldwide gross'].str.replace('$', '').str.replace(',', '').astype(float)
+df['Year'] = df['Year'].astype(int)
+num_2bn_movies = df[(df['Worldwide gross'] >= 2000000000) & (df['Year'] < 2020)].shape[0]
+result = {'type': 'string', 'value': f'The number of $2 billion movies released before 2020 is: {num_2bn_movies}'}
+        ```
+2025-07-25 15:24:00 [ERROR] Failed with error: Traceback (most recent call last):
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 87, in execute
+    result = self.execute_code(input, code_context)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 172, in execute_code
+    exec(code, environment)
+  File "<string>", line 2, in <module>
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/generic.py", line 6534, in astype
+    new_data = self._mgr.astype(dtype=dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 414, in astype
+    return self.apply(
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 354, in apply
+    applied = getattr(b, f)(**kwargs)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/blocks.py", line 616, in astype
+    new_values = astype_array_safe(values, dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 238, in astype_array_safe
+    new_values = astype_array(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 183, in astype_array
+    values = _astype_nansafe(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 134, in _astype_nansafe
+    return arr.astype(dtype, copy=True)
+ValueError: invalid literal for int() with base 10: 'T2257844554'
+
+2025-07-25 15:24:00 [WARNING] Failed to execute code retrying with a correction framework [retry number: 2]
+2025-07-25 15:24:00 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2025-07-25 15:24:00 [INFO] Executing Step 0: ErrorPromptGeneration
+2025-07-25 15:24:00 [INFO] Using prompt: dfs[0]:
+  name: null
+  description: null
+  type: pd.DataFrame
+  rows: 50
+  columns: 6
+  schema:
+    fields:
+    - name: Rank
+      type: int64
+      samples:
+      - 28
+      - 5
+      - 45
+    - name: Peak
+      type: object
+      samples:
+      - '14'
+      - '3'
+      - 23RK
+    - name: Title
+      type: object
+      samples:
+      - Beauty and the Beast
+      - Jurassic Park
+      - Barbie
+    - name: Worldwide gross
+      type: object
+      samples:
+      - $1,347,280,838
+      - $1,342,139,727
+      - $1,495,696,292
+    - name: Year
+      type: int64
+      samples:
+      - 2016
+      - 2013
+      - 2014
+    - name: Ref
+      type: object
+      samples:
+      - '[# 19][# 20]'
+      - '[# 61][# 38]'
+      - '[# 50][# 51]'
+
+
+The user asked the following question:
+### QUERY
+ How many $2 bn movies were released before 2020?
+
+You generated this python code:
+df = dfs[0]
+df['Worldwide gross'] = df['Worldwide gross'].str.replace('$', '').str.replace(',', '').astype(float)
+df['Year'] = df['Year'].astype(int)
+num_2bn_movies = df[(df['Worldwide gross'] >= 2000000000) & (df['Year'] < 2020)].shape[0]
+result = {'type': 'string', 'value': f'The number of $2 billion movies released before 2020 is: {num_2bn_movies}'}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 87, in execute
+    result = self.execute_code(input, code_context)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 172, in execute_code
+    exec(code, environment)
+  File "<string>", line 2, in <module>
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/generic.py", line 6534, in astype
+    new_data = self._mgr.astype(dtype=dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 414, in astype
+    return self.apply(
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 354, in apply
+    applied = getattr(b, f)(**kwargs)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/blocks.py", line 616, in astype
+    new_values = astype_array_safe(values, dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 238, in astype_array_safe
+    new_values = astype_array(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 183, in astype_array
+    values = _astype_nansafe(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 134, in _astype_nansafe
+    return arr.astype(dtype, copy=True)
+ValueError: invalid literal for int() with base 10: 'T2257844554'
+
+
+Fix the python code above and return the new python code:
+2025-07-25 15:24:00 [INFO] Executing Step 1: CodeGenerator
+2025-07-25 15:24:04 [INFO] HTTP Request: POST https://aipipe.org/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-25 15:24:04 [INFO] Prompt used:
+            dfs[0]:
+  name: null
+  description: null
+  type: pd.DataFrame
+  rows: 50
+  columns: 6
+  schema:
+    fields:
+    - name: Rank
+      type: int64
+      samples:
+      - 28
+      - 5
+      - 45
+    - name: Peak
+      type: object
+      samples:
+      - '14'
+      - '3'
+      - 23RK
+    - name: Title
+      type: object
+      samples:
+      - Beauty and the Beast
+      - Jurassic Park
+      - Barbie
+    - name: Worldwide gross
+      type: object
+      samples:
+      - $1,347,280,838
+      - $1,342,139,727
+      - $1,495,696,292
+    - name: Year
+      type: int64
+      samples:
+      - 2016
+      - 2013
+      - 2014
+    - name: Ref
+      type: object
+      samples:
+      - '[# 19][# 20]'
+      - '[# 61][# 38]'
+      - '[# 50][# 51]'
+
+
+The user asked the following question:
+### QUERY
+ How many $2 bn movies were released before 2020?
+
+You generated this python code:
+df = dfs[0]
+df['Worldwide gross'] = df['Worldwide gross'].str.replace('$', '').str.replace(',', '').astype(float)
+df['Year'] = df['Year'].astype(int)
+num_2bn_movies = df[(df['Worldwide gross'] >= 2000000000) & (df['Year'] < 2020)].shape[0]
+result = {'type': 'string', 'value': f'The number of $2 billion movies released before 2020 is: {num_2bn_movies}'}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 87, in execute
+    result = self.execute_code(input, code_context)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 172, in execute_code
+    exec(code, environment)
+  File "<string>", line 2, in <module>
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/generic.py", line 6534, in astype
+    new_data = self._mgr.astype(dtype=dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 414, in astype
+    return self.apply(
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 354, in apply
+    applied = getattr(b, f)(**kwargs)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/blocks.py", line 616, in astype
+    new_values = astype_array_safe(values, dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 238, in astype_array_safe
+    new_values = astype_array(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 183, in astype_array
+    values = _astype_nansafe(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 134, in _astype_nansafe
+    return arr.astype(dtype, copy=True)
+ValueError: invalid literal for int() with base 10: 'T2257844554'
+
+
+Fix the python code above and return the new python code:
+            
+2025-07-25 15:24:04 [INFO] Code generated:
+            ```
+            import pandas as pd
+
+df = dfs[0]
+df['Worldwide gross'] = df['Worldwide gross'].str.replace('$', '').str.replace(',', '').astype(float)
+df['Year'] = pd.to_numeric(df['Year'], errors='coerce')
+num_2bn_movies = df[(df['Worldwide gross'] >= 2000000000) & (df['Year'] < 2020)].shape[0]
+result = {'type': 'string', 'value': f'The number of $2 billion movies released before 2020 is: {num_2bn_movies}'}
+            ```
+            
+2025-07-25 15:24:04 [INFO] Executing Step 2: CodeCleaning
+2025-07-25 15:24:04 [INFO] 
+Code running:
+```
+df = dfs[0]
+df['Worldwide gross'] = df['Worldwide gross'].str.replace('$', '').str.replace(',', '').astype(float)
+df['Year'] = pd.to_numeric(df['Year'], errors='coerce')
+num_2bn_movies = df[(df['Worldwide gross'] >= 2000000000) & (df['Year'] < 2020)].shape[0]
+result = {'type': 'string', 'value': f'The number of $2 billion movies released before 2020 is: {num_2bn_movies}'}
+        ```
+2025-07-25 15:24:04 [ERROR] Failed with error: Traceback (most recent call last):
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 87, in execute
+    result = self.execute_code(input, code_context)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 172, in execute_code
+    exec(code, environment)
+  File "<string>", line 2, in <module>
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/generic.py", line 6534, in astype
+    new_data = self._mgr.astype(dtype=dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 414, in astype
+    return self.apply(
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 354, in apply
+    applied = getattr(b, f)(**kwargs)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/blocks.py", line 616, in astype
+    new_values = astype_array_safe(values, dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 238, in astype_array_safe
+    new_values = astype_array(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 183, in astype_array
+    values = _astype_nansafe(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 134, in _astype_nansafe
+    return arr.astype(dtype, copy=True)
+ValueError: invalid literal for int() with base 10: 'T2257844554'
+
+2025-07-25 15:24:04 [WARNING] Failed to execute code retrying with a correction framework [retry number: 3]
+2025-07-25 15:24:04 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2025-07-25 15:24:04 [INFO] Executing Step 0: ErrorPromptGeneration
+2025-07-25 15:24:04 [INFO] Using prompt: dfs[0]:
+  name: null
+  description: null
+  type: pd.DataFrame
+  rows: 50
+  columns: 6
+  schema:
+    fields:
+    - name: Rank
+      type: int64
+      samples:
+      - 28
+      - 5
+      - 45
+    - name: Peak
+      type: object
+      samples:
+      - '14'
+      - '3'
+      - 23RK
+    - name: Title
+      type: object
+      samples:
+      - Beauty and the Beast
+      - Jurassic Park
+      - Barbie
+    - name: Worldwide gross
+      type: object
+      samples:
+      - $1,347,280,838
+      - $1,342,139,727
+      - $1,495,696,292
+    - name: Year
+      type: int64
+      samples:
+      - 2016
+      - 2013
+      - 2014
+    - name: Ref
+      type: object
+      samples:
+      - '[# 19][# 20]'
+      - '[# 61][# 38]'
+      - '[# 50][# 51]'
+
+
+The user asked the following question:
+### QUERY
+ How many $2 bn movies were released before 2020?
+
+You generated this python code:
+df = dfs[0]
+df['Worldwide gross'] = df['Worldwide gross'].str.replace('$', '').str.replace(',', '').astype(float)
+df['Year'] = pd.to_numeric(df['Year'], errors='coerce')
+num_2bn_movies = df[(df['Worldwide gross'] >= 2000000000) & (df['Year'] < 2020)].shape[0]
+result = {'type': 'string', 'value': f'The number of $2 billion movies released before 2020 is: {num_2bn_movies}'}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 87, in execute
+    result = self.execute_code(input, code_context)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 172, in execute_code
+    exec(code, environment)
+  File "<string>", line 2, in <module>
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/generic.py", line 6534, in astype
+    new_data = self._mgr.astype(dtype=dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 414, in astype
+    return self.apply(
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 354, in apply
+    applied = getattr(b, f)(**kwargs)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/blocks.py", line 616, in astype
+    new_values = astype_array_safe(values, dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 238, in astype_array_safe
+    new_values = astype_array(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 183, in astype_array
+    values = _astype_nansafe(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 134, in _astype_nansafe
+    return arr.astype(dtype, copy=True)
+ValueError: invalid literal for int() with base 10: 'T2257844554'
+
+
+Fix the python code above and return the new python code:
+2025-07-25 15:24:04 [INFO] Executing Step 1: CodeGenerator
+2025-07-25 15:24:06 [INFO] HTTP Request: POST https://aipipe.org/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-25 15:24:06 [INFO] Prompt used:
+            dfs[0]:
+  name: null
+  description: null
+  type: pd.DataFrame
+  rows: 50
+  columns: 6
+  schema:
+    fields:
+    - name: Rank
+      type: int64
+      samples:
+      - 28
+      - 5
+      - 45
+    - name: Peak
+      type: object
+      samples:
+      - '14'
+      - '3'
+      - 23RK
+    - name: Title
+      type: object
+      samples:
+      - Beauty and the Beast
+      - Jurassic Park
+      - Barbie
+    - name: Worldwide gross
+      type: object
+      samples:
+      - $1,347,280,838
+      - $1,342,139,727
+      - $1,495,696,292
+    - name: Year
+      type: int64
+      samples:
+      - 2016
+      - 2013
+      - 2014
+    - name: Ref
+      type: object
+      samples:
+      - '[# 19][# 20]'
+      - '[# 61][# 38]'
+      - '[# 50][# 51]'
+
+
+The user asked the following question:
+### QUERY
+ How many $2 bn movies were released before 2020?
+
+You generated this python code:
+df = dfs[0]
+df['Worldwide gross'] = df['Worldwide gross'].str.replace('$', '').str.replace(',', '').astype(float)
+df['Year'] = pd.to_numeric(df['Year'], errors='coerce')
+num_2bn_movies = df[(df['Worldwide gross'] >= 2000000000) & (df['Year'] < 2020)].shape[0]
+result = {'type': 'string', 'value': f'The number of $2 billion movies released before 2020 is: {num_2bn_movies}'}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 87, in execute
+    result = self.execute_code(input, code_context)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 172, in execute_code
+    exec(code, environment)
+  File "<string>", line 2, in <module>
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/generic.py", line 6534, in astype
+    new_data = self._mgr.astype(dtype=dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 414, in astype
+    return self.apply(
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 354, in apply
+    applied = getattr(b, f)(**kwargs)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/blocks.py", line 616, in astype
+    new_values = astype_array_safe(values, dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 238, in astype_array_safe
+    new_values = astype_array(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 183, in astype_array
+    values = _astype_nansafe(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 134, in _astype_nansafe
+    return arr.astype(dtype, copy=True)
+ValueError: invalid literal for int() with base 10: 'T2257844554'
+
+
+Fix the python code above and return the new python code:
+            
+2025-07-25 15:24:06 [INFO] Code generated:
+            ```
+            import pandas as pd
+
+df = dfs[0]
+df['Worldwide gross'] = df['Worldwide gross'].str.replace('$', '').str.replace(',', '').astype(float)
+df['Year'] = pd.to_numeric(df['Year'], errors='coerce')
+num_2bn_movies = df[(df['Worldwide gross'] >= 2000000000) & (df['Year'] < 2020)].shape[0]
+result = {'type': 'string', 'value': f'The number of $2 billion movies released before 2020 is: {num_2bn_movies}'}
+            ```
+            
+2025-07-25 15:24:06 [INFO] Executing Step 2: CodeCleaning
+2025-07-25 15:24:06 [INFO] 
+Code running:
+```
+df = dfs[0]
+df['Worldwide gross'] = df['Worldwide gross'].str.replace('$', '').str.replace(',', '').astype(float)
+df['Year'] = pd.to_numeric(df['Year'], errors='coerce')
+num_2bn_movies = df[(df['Worldwide gross'] >= 2000000000) & (df['Year'] < 2020)].shape[0]
+result = {'type': 'string', 'value': f'The number of $2 billion movies released before 2020 is: {num_2bn_movies}'}
+        ```
+2025-07-25 15:24:06 [ERROR] Failed with error: Traceback (most recent call last):
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 87, in execute
+    result = self.execute_code(input, code_context)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 172, in execute_code
+    exec(code, environment)
+  File "<string>", line 2, in <module>
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/generic.py", line 6534, in astype
+    new_data = self._mgr.astype(dtype=dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 414, in astype
+    return self.apply(
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 354, in apply
+    applied = getattr(b, f)(**kwargs)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/blocks.py", line 616, in astype
+    new_values = astype_array_safe(values, dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 238, in astype_array_safe
+    new_values = astype_array(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 183, in astype_array
+    values = _astype_nansafe(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 134, in _astype_nansafe
+    return arr.astype(dtype, copy=True)
+ValueError: invalid literal for int() with base 10: 'T2257844554'
+
+2025-07-25 15:24:06 [ERROR] Pipeline failed on step 6: invalid literal for int() with base 10: 'T2257844554'
+2025-07-25 15:24:06 [INFO] Question: Which is the earliest film that grossed over $1.5 bn?
+2025-07-25 15:24:06 [INFO] Running PandasAI with openai LLM...
+2025-07-25 15:24:06 [INFO] Prompt ID: 0c17ff4f-2cad-449c-b447-704f873eb16a
+2025-07-25 15:24:06 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-07-25 15:24:06 [INFO] Executing Step 0: ValidatePipelineInput
+2025-07-25 15:24:06 [INFO] Executing Step 1: CacheLookup
+2025-07-25 15:24:06 [INFO] Executing Step 2: PromptGeneration
+2025-07-25 15:24:06 [INFO] Using prompt: dfs[0]:
+  name: null
+  description: null
+  type: pd.DataFrame
+  rows: 50
+  columns: 6
+  schema:
+    fields:
+    - name: Rank
+      type: int64
+      samples:
+      - 28
+      - 5
+      - 45
+    - name: Peak
+      type: object
+      samples:
+      - '14'
+      - '3'
+      - 23RK
+    - name: Title
+      type: object
+      samples:
+      - Beauty and the Beast
+      - Jurassic Park
+      - Barbie
+    - name: Worldwide gross
+      type: object
+      samples:
+      - $1,347,280,838
+      - $1,342,139,727
+      - $1,495,696,292
+    - name: Year
+      type: int64
+      samples:
+      - 2016
+      - 2013
+      - 2014
+    - name: Ref
+      type: object
+      samples:
+      - '[# 19][# 20]'
+      - '[# 61][# 38]'
+      - '[# 50][# 51]'
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ Which is the earliest film that grossed over $1.5 bn?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2025-07-25 15:24:06 [INFO] Executing Step 3: CodeGenerator
+2025-07-25 15:24:10 [INFO] HTTP Request: POST https://aipipe.org/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-25 15:24:10 [INFO] Prompt used:
+            dfs[0]:
+  name: null
+  description: null
+  type: pd.DataFrame
+  rows: 50
+  columns: 6
+  schema:
+    fields:
+    - name: Rank
+      type: int64
+      samples:
+      - 28
+      - 5
+      - 45
+    - name: Peak
+      type: object
+      samples:
+      - '14'
+      - '3'
+      - 23RK
+    - name: Title
+      type: object
+      samples:
+      - Beauty and the Beast
+      - Jurassic Park
+      - Barbie
+    - name: Worldwide gross
+      type: object
+      samples:
+      - $1,347,280,838
+      - $1,342,139,727
+      - $1,495,696,292
+    - name: Year
+      type: int64
+      samples:
+      - 2016
+      - 2013
+      - 2014
+    - name: Ref
+      type: object
+      samples:
+      - '[# 19][# 20]'
+      - '[# 61][# 38]'
+      - '[# 50][# 51]'
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ Which is the earliest film that grossed over $1.5 bn?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2025-07-25 15:24:10 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+df = dfs[0]
+df['Worldwide gross'] = df['Worldwide gross'].str.replace('$', '').str.replace(',', '').astype(float)
+earliest_film_over_1_5bn = df[df['Worldwide gross'] > 1500000000].sort_values('Year').iloc[0]['Title']
+
+# Declare result var
+result = {
+    "type": "string",
+    "value": f"The earliest film that grossed over $1.5 billion is {earliest_film_over_1_5bn}."
+}
+            ```
+            
+2025-07-25 15:24:10 [INFO] Executing Step 4: CachePopulation
+2025-07-25 15:24:10 [INFO] Executing Step 5: CodeCleaning
+2025-07-25 15:24:10 [INFO] 
+Code running:
+```
+df = dfs[0]
+df['Worldwide gross'] = df['Worldwide gross'].str.replace('$', '').str.replace(',', '').astype(float)
+earliest_film_over_1_5bn = df[df['Worldwide gross'] > 1500000000].sort_values('Year').iloc[0]['Title']
+result = {'type': 'string', 'value': f'The earliest film that grossed over $1.5 billion is {earliest_film_over_1_5bn}.'}
+        ```
+2025-07-25 15:24:10 [INFO] Executing Step 6: CodeExecution
+2025-07-25 15:24:10 [ERROR] Failed with error: Traceback (most recent call last):
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 87, in execute
+    result = self.execute_code(input, code_context)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 172, in execute_code
+    exec(code, environment)
+  File "<string>", line 2, in <module>
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/generic.py", line 6534, in astype
+    new_data = self._mgr.astype(dtype=dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 414, in astype
+    return self.apply(
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 354, in apply
+    applied = getattr(b, f)(**kwargs)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/blocks.py", line 616, in astype
+    new_values = astype_array_safe(values, dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 238, in astype_array_safe
+    new_values = astype_array(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 183, in astype_array
+    values = _astype_nansafe(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 134, in _astype_nansafe
+    return arr.astype(dtype, copy=True)
+ValueError: could not convert string to float: 'T2257844554'
+
+2025-07-25 15:24:10 [WARNING] Failed to execute code retrying with a correction framework [retry number: 1]
+2025-07-25 15:24:10 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2025-07-25 15:24:10 [INFO] Executing Step 0: ErrorPromptGeneration
+2025-07-25 15:24:10 [INFO] Using prompt: dfs[0]:
+  name: null
+  description: null
+  type: pd.DataFrame
+  rows: 50
+  columns: 6
+  schema:
+    fields:
+    - name: Rank
+      type: int64
+      samples:
+      - 28
+      - 5
+      - 45
+    - name: Peak
+      type: object
+      samples:
+      - '14'
+      - '3'
+      - 23RK
+    - name: Title
+      type: object
+      samples:
+      - Beauty and the Beast
+      - Jurassic Park
+      - Barbie
+    - name: Worldwide gross
+      type: object
+      samples:
+      - $1,347,280,838
+      - $1,342,139,727
+      - $1,495,696,292
+    - name: Year
+      type: int64
+      samples:
+      - 2016
+      - 2013
+      - 2014
+    - name: Ref
+      type: object
+      samples:
+      - '[# 19][# 20]'
+      - '[# 61][# 38]'
+      - '[# 50][# 51]'
+
+
+The user asked the following question:
+### QUERY
+ How many $2 bn movies were released before 2020?
+### QUERY
+ Which is the earliest film that grossed over $1.5 bn?
+
+You generated this python code:
+df = dfs[0]
+df['Worldwide gross'] = df['Worldwide gross'].str.replace('$', '').str.replace(',', '').astype(float)
+earliest_film_over_1_5bn = df[df['Worldwide gross'] > 1500000000].sort_values('Year').iloc[0]['Title']
+result = {'type': 'string', 'value': f'The earliest film that grossed over $1.5 billion is {earliest_film_over_1_5bn}.'}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 87, in execute
+    result = self.execute_code(input, code_context)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 172, in execute_code
+    exec(code, environment)
+  File "<string>", line 2, in <module>
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/generic.py", line 6534, in astype
+    new_data = self._mgr.astype(dtype=dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 414, in astype
+    return self.apply(
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 354, in apply
+    applied = getattr(b, f)(**kwargs)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/blocks.py", line 616, in astype
+    new_values = astype_array_safe(values, dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 238, in astype_array_safe
+    new_values = astype_array(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 183, in astype_array
+    values = _astype_nansafe(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 134, in _astype_nansafe
+    return arr.astype(dtype, copy=True)
+ValueError: could not convert string to float: 'T2257844554'
+
+
+Fix the python code above and return the new python code:
+2025-07-25 15:24:10 [INFO] Executing Step 1: CodeGenerator
+2025-07-25 15:24:12 [INFO] HTTP Request: POST https://aipipe.org/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-25 15:24:12 [INFO] Prompt used:
+            dfs[0]:
+  name: null
+  description: null
+  type: pd.DataFrame
+  rows: 50
+  columns: 6
+  schema:
+    fields:
+    - name: Rank
+      type: int64
+      samples:
+      - 28
+      - 5
+      - 45
+    - name: Peak
+      type: object
+      samples:
+      - '14'
+      - '3'
+      - 23RK
+    - name: Title
+      type: object
+      samples:
+      - Beauty and the Beast
+      - Jurassic Park
+      - Barbie
+    - name: Worldwide gross
+      type: object
+      samples:
+      - $1,347,280,838
+      - $1,342,139,727
+      - $1,495,696,292
+    - name: Year
+      type: int64
+      samples:
+      - 2016
+      - 2013
+      - 2014
+    - name: Ref
+      type: object
+      samples:
+      - '[# 19][# 20]'
+      - '[# 61][# 38]'
+      - '[# 50][# 51]'
+
+
+The user asked the following question:
+### QUERY
+ How many $2 bn movies were released before 2020?
+### QUERY
+ Which is the earliest film that grossed over $1.5 bn?
+
+You generated this python code:
+df = dfs[0]
+df['Worldwide gross'] = df['Worldwide gross'].str.replace('$', '').str.replace(',', '').astype(float)
+earliest_film_over_1_5bn = df[df['Worldwide gross'] > 1500000000].sort_values('Year').iloc[0]['Title']
+result = {'type': 'string', 'value': f'The earliest film that grossed over $1.5 billion is {earliest_film_over_1_5bn}.'}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 87, in execute
+    result = self.execute_code(input, code_context)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 172, in execute_code
+    exec(code, environment)
+  File "<string>", line 2, in <module>
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/generic.py", line 6534, in astype
+    new_data = self._mgr.astype(dtype=dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 414, in astype
+    return self.apply(
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 354, in apply
+    applied = getattr(b, f)(**kwargs)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/blocks.py", line 616, in astype
+    new_values = astype_array_safe(values, dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 238, in astype_array_safe
+    new_values = astype_array(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 183, in astype_array
+    values = _astype_nansafe(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 134, in _astype_nansafe
+    return arr.astype(dtype, copy=True)
+ValueError: could not convert string to float: 'T2257844554'
+
+
+Fix the python code above and return the new python code:
+            
+2025-07-25 15:24:12 [INFO] Code generated:
+            ```
+            import pandas as pd
+
+df = dfs[0]
+df['Worldwide gross'] = df['Worldwide gross'].str.replace('$', '').str.replace(',', '').astype(float, errors='coerce')
+earliest_film_over_1_5bn = df[df['Worldwide gross'] > 1500000000].sort_values('Year').iloc[0]['Title']
+result = {'type': 'string', 'value': f'The earliest film that grossed over $1.5 billion is {earliest_film_over_1_5bn}.'}
+            ```
+            
+2025-07-25 15:24:12 [INFO] Executing Step 2: CodeCleaning
+2025-07-25 15:24:12 [INFO] 
+Code running:
+```
+df = dfs[0]
+df['Worldwide gross'] = df['Worldwide gross'].str.replace('$', '').str.replace(',', '').astype(float, errors='coerce')
+earliest_film_over_1_5bn = df[df['Worldwide gross'] > 1500000000].sort_values('Year').iloc[0]['Title']
+result = {'type': 'string', 'value': f'The earliest film that grossed over $1.5 billion is {earliest_film_over_1_5bn}.'}
+        ```
+2025-07-25 15:24:12 [ERROR] Failed with error: Traceback (most recent call last):
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 87, in execute
+    result = self.execute_code(input, code_context)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 172, in execute_code
+    exec(code, environment)
+  File "<string>", line 2, in <module>
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/generic.py", line 6534, in astype
+    new_data = self._mgr.astype(dtype=dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 414, in astype
+    return self.apply(
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 354, in apply
+    applied = getattr(b, f)(**kwargs)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/blocks.py", line 616, in astype
+    new_values = astype_array_safe(values, dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 238, in astype_array_safe
+    new_values = astype_array(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 183, in astype_array
+    values = _astype_nansafe(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 134, in _astype_nansafe
+    return arr.astype(dtype, copy=True)
+ValueError: could not convert string to float: 'T2257844554'
+
+2025-07-25 15:24:12 [WARNING] Failed to execute code retrying with a correction framework [retry number: 2]
+2025-07-25 15:24:12 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2025-07-25 15:24:12 [INFO] Executing Step 0: ErrorPromptGeneration
+2025-07-25 15:24:12 [INFO] Using prompt: dfs[0]:
+  name: null
+  description: null
+  type: pd.DataFrame
+  rows: 50
+  columns: 6
+  schema:
+    fields:
+    - name: Rank
+      type: int64
+      samples:
+      - 28
+      - 5
+      - 45
+    - name: Peak
+      type: object
+      samples:
+      - '14'
+      - '3'
+      - 23RK
+    - name: Title
+      type: object
+      samples:
+      - Beauty and the Beast
+      - Jurassic Park
+      - Barbie
+    - name: Worldwide gross
+      type: object
+      samples:
+      - $1,347,280,838
+      - $1,342,139,727
+      - $1,495,696,292
+    - name: Year
+      type: int64
+      samples:
+      - 2016
+      - 2013
+      - 2014
+    - name: Ref
+      type: object
+      samples:
+      - '[# 19][# 20]'
+      - '[# 61][# 38]'
+      - '[# 50][# 51]'
+
+
+The user asked the following question:
+### QUERY
+ How many $2 bn movies were released before 2020?
+### QUERY
+ Which is the earliest film that grossed over $1.5 bn?
+
+You generated this python code:
+df = dfs[0]
+df['Worldwide gross'] = df['Worldwide gross'].str.replace('$', '').str.replace(',', '').astype(float, errors='coerce')
+earliest_film_over_1_5bn = df[df['Worldwide gross'] > 1500000000].sort_values('Year').iloc[0]['Title']
+result = {'type': 'string', 'value': f'The earliest film that grossed over $1.5 billion is {earliest_film_over_1_5bn}.'}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 87, in execute
+    result = self.execute_code(input, code_context)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 172, in execute_code
+    exec(code, environment)
+  File "<string>", line 2, in <module>
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/generic.py", line 6534, in astype
+    new_data = self._mgr.astype(dtype=dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 414, in astype
+    return self.apply(
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 354, in apply
+    applied = getattr(b, f)(**kwargs)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/blocks.py", line 616, in astype
+    new_values = astype_array_safe(values, dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 238, in astype_array_safe
+    new_values = astype_array(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 183, in astype_array
+    values = _astype_nansafe(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 134, in _astype_nansafe
+    return arr.astype(dtype, copy=True)
+ValueError: could not convert string to float: 'T2257844554'
+
+
+Fix the python code above and return the new python code:
+2025-07-25 15:24:12 [INFO] Executing Step 1: CodeGenerator
+2025-07-25 15:24:16 [INFO] HTTP Request: POST https://aipipe.org/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-25 15:24:16 [INFO] Prompt used:
+            dfs[0]:
+  name: null
+  description: null
+  type: pd.DataFrame
+  rows: 50
+  columns: 6
+  schema:
+    fields:
+    - name: Rank
+      type: int64
+      samples:
+      - 28
+      - 5
+      - 45
+    - name: Peak
+      type: object
+      samples:
+      - '14'
+      - '3'
+      - 23RK
+    - name: Title
+      type: object
+      samples:
+      - Beauty and the Beast
+      - Jurassic Park
+      - Barbie
+    - name: Worldwide gross
+      type: object
+      samples:
+      - $1,347,280,838
+      - $1,342,139,727
+      - $1,495,696,292
+    - name: Year
+      type: int64
+      samples:
+      - 2016
+      - 2013
+      - 2014
+    - name: Ref
+      type: object
+      samples:
+      - '[# 19][# 20]'
+      - '[# 61][# 38]'
+      - '[# 50][# 51]'
+
+
+The user asked the following question:
+### QUERY
+ How many $2 bn movies were released before 2020?
+### QUERY
+ Which is the earliest film that grossed over $1.5 bn?
+
+You generated this python code:
+df = dfs[0]
+df['Worldwide gross'] = df['Worldwide gross'].str.replace('$', '').str.replace(',', '').astype(float, errors='coerce')
+earliest_film_over_1_5bn = df[df['Worldwide gross'] > 1500000000].sort_values('Year').iloc[0]['Title']
+result = {'type': 'string', 'value': f'The earliest film that grossed over $1.5 billion is {earliest_film_over_1_5bn}.'}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 87, in execute
+    result = self.execute_code(input, code_context)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 172, in execute_code
+    exec(code, environment)
+  File "<string>", line 2, in <module>
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/generic.py", line 6534, in astype
+    new_data = self._mgr.astype(dtype=dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 414, in astype
+    return self.apply(
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 354, in apply
+    applied = getattr(b, f)(**kwargs)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/blocks.py", line 616, in astype
+    new_values = astype_array_safe(values, dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 238, in astype_array_safe
+    new_values = astype_array(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 183, in astype_array
+    values = _astype_nansafe(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 134, in _astype_nansafe
+    return arr.astype(dtype, copy=True)
+ValueError: could not convert string to float: 'T2257844554'
+
+
+Fix the python code above and return the new python code:
+            
+2025-07-25 15:24:16 [INFO] Code generated:
+            ```
+            import pandas as pd
+
+df = dfs[0]
+df['Worldwide gross'] = df['Worldwide gross'].str.replace('$', '').str.replace(',', '').astype(float, errors='coerce')
+earliest_film_over_1_5bn = df[df['Worldwide gross'] > 1500000000].sort_values('Year').iloc[0]['Title']
+result = {'type': 'string', 'value': f'The earliest film that grossed over $1.5 billion is {earliest_film_over_1_5bn}.'}
+
+result
+            ```
+            
+2025-07-25 15:24:16 [INFO] Executing Step 2: CodeCleaning
+2025-07-25 15:24:16 [INFO] 
+Code running:
+```
+df = dfs[0]
+df['Worldwide gross'] = df['Worldwide gross'].str.replace('$', '').str.replace(',', '').astype(float, errors='coerce')
+earliest_film_over_1_5bn = df[df['Worldwide gross'] > 1500000000].sort_values('Year').iloc[0]['Title']
+result = {'type': 'string', 'value': f'The earliest film that grossed over $1.5 billion is {earliest_film_over_1_5bn}.'}
+result
+        ```
+2025-07-25 15:24:16 [ERROR] Failed with error: Traceback (most recent call last):
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 87, in execute
+    result = self.execute_code(input, code_context)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 172, in execute_code
+    exec(code, environment)
+  File "<string>", line 2, in <module>
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/generic.py", line 6534, in astype
+    new_data = self._mgr.astype(dtype=dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 414, in astype
+    return self.apply(
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 354, in apply
+    applied = getattr(b, f)(**kwargs)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/blocks.py", line 616, in astype
+    new_values = astype_array_safe(values, dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 238, in astype_array_safe
+    new_values = astype_array(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 183, in astype_array
+    values = _astype_nansafe(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 134, in _astype_nansafe
+    return arr.astype(dtype, copy=True)
+ValueError: could not convert string to float: 'T2257844554'
+
+2025-07-25 15:24:16 [WARNING] Failed to execute code retrying with a correction framework [retry number: 3]
+2025-07-25 15:24:16 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2025-07-25 15:24:16 [INFO] Executing Step 0: ErrorPromptGeneration
+2025-07-25 15:24:16 [INFO] Using prompt: dfs[0]:
+  name: null
+  description: null
+  type: pd.DataFrame
+  rows: 50
+  columns: 6
+  schema:
+    fields:
+    - name: Rank
+      type: int64
+      samples:
+      - 28
+      - 5
+      - 45
+    - name: Peak
+      type: object
+      samples:
+      - '14'
+      - '3'
+      - 23RK
+    - name: Title
+      type: object
+      samples:
+      - Beauty and the Beast
+      - Jurassic Park
+      - Barbie
+    - name: Worldwide gross
+      type: object
+      samples:
+      - $1,347,280,838
+      - $1,342,139,727
+      - $1,495,696,292
+    - name: Year
+      type: int64
+      samples:
+      - 2016
+      - 2013
+      - 2014
+    - name: Ref
+      type: object
+      samples:
+      - '[# 19][# 20]'
+      - '[# 61][# 38]'
+      - '[# 50][# 51]'
+
+
+The user asked the following question:
+### QUERY
+ How many $2 bn movies were released before 2020?
+### QUERY
+ Which is the earliest film that grossed over $1.5 bn?
+
+You generated this python code:
+df = dfs[0]
+df['Worldwide gross'] = df['Worldwide gross'].str.replace('$', '').str.replace(',', '').astype(float, errors='coerce')
+earliest_film_over_1_5bn = df[df['Worldwide gross'] > 1500000000].sort_values('Year').iloc[0]['Title']
+result = {'type': 'string', 'value': f'The earliest film that grossed over $1.5 billion is {earliest_film_over_1_5bn}.'}
+result
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 87, in execute
+    result = self.execute_code(input, code_context)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 172, in execute_code
+    exec(code, environment)
+  File "<string>", line 2, in <module>
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/generic.py", line 6534, in astype
+    new_data = self._mgr.astype(dtype=dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 414, in astype
+    return self.apply(
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 354, in apply
+    applied = getattr(b, f)(**kwargs)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/blocks.py", line 616, in astype
+    new_values = astype_array_safe(values, dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 238, in astype_array_safe
+    new_values = astype_array(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 183, in astype_array
+    values = _astype_nansafe(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 134, in _astype_nansafe
+    return arr.astype(dtype, copy=True)
+ValueError: could not convert string to float: 'T2257844554'
+
+
+Fix the python code above and return the new python code:
+2025-07-25 15:24:16 [INFO] Executing Step 1: CodeGenerator
+2025-07-25 15:24:19 [INFO] HTTP Request: POST https://aipipe.org/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-25 15:24:19 [INFO] Prompt used:
+            dfs[0]:
+  name: null
+  description: null
+  type: pd.DataFrame
+  rows: 50
+  columns: 6
+  schema:
+    fields:
+    - name: Rank
+      type: int64
+      samples:
+      - 28
+      - 5
+      - 45
+    - name: Peak
+      type: object
+      samples:
+      - '14'
+      - '3'
+      - 23RK
+    - name: Title
+      type: object
+      samples:
+      - Beauty and the Beast
+      - Jurassic Park
+      - Barbie
+    - name: Worldwide gross
+      type: object
+      samples:
+      - $1,347,280,838
+      - $1,342,139,727
+      - $1,495,696,292
+    - name: Year
+      type: int64
+      samples:
+      - 2016
+      - 2013
+      - 2014
+    - name: Ref
+      type: object
+      samples:
+      - '[# 19][# 20]'
+      - '[# 61][# 38]'
+      - '[# 50][# 51]'
+
+
+The user asked the following question:
+### QUERY
+ How many $2 bn movies were released before 2020?
+### QUERY
+ Which is the earliest film that grossed over $1.5 bn?
+
+You generated this python code:
+df = dfs[0]
+df['Worldwide gross'] = df['Worldwide gross'].str.replace('$', '').str.replace(',', '').astype(float, errors='coerce')
+earliest_film_over_1_5bn = df[df['Worldwide gross'] > 1500000000].sort_values('Year').iloc[0]['Title']
+result = {'type': 'string', 'value': f'The earliest film that grossed over $1.5 billion is {earliest_film_over_1_5bn}.'}
+result
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 87, in execute
+    result = self.execute_code(input, code_context)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 172, in execute_code
+    exec(code, environment)
+  File "<string>", line 2, in <module>
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/generic.py", line 6534, in astype
+    new_data = self._mgr.astype(dtype=dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 414, in astype
+    return self.apply(
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 354, in apply
+    applied = getattr(b, f)(**kwargs)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/blocks.py", line 616, in astype
+    new_values = astype_array_safe(values, dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 238, in astype_array_safe
+    new_values = astype_array(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 183, in astype_array
+    values = _astype_nansafe(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 134, in _astype_nansafe
+    return arr.astype(dtype, copy=True)
+ValueError: could not convert string to float: 'T2257844554'
+
+
+Fix the python code above and return the new python code:
+            
+2025-07-25 15:24:19 [INFO] Code generated:
+            ```
+            import pandas as pd
+
+df = dfs[0]
+df['Worldwide gross'] = df['Worldwide gross'].str.replace('$', '').str.replace(',', '').astype(float, errors='coerce')
+earliest_film_over_1_5bn = df[df['Worldwide gross'] > 1500000000].sort_values('Year').iloc[0]['Title']
+result = {'type': 'string', 'value': f'The earliest film that grossed over $1.5 billion is {earliest_film_over_1_5bn}.'}
+result
+            ```
+            
+2025-07-25 15:24:19 [INFO] Executing Step 2: CodeCleaning
+2025-07-25 15:24:19 [INFO] 
+Code running:
+```
+df = dfs[0]
+df['Worldwide gross'] = df['Worldwide gross'].str.replace('$', '').str.replace(',', '').astype(float, errors='coerce')
+earliest_film_over_1_5bn = df[df['Worldwide gross'] > 1500000000].sort_values('Year').iloc[0]['Title']
+result = {'type': 'string', 'value': f'The earliest film that grossed over $1.5 billion is {earliest_film_over_1_5bn}.'}
+result
+        ```
+2025-07-25 15:24:19 [ERROR] Failed with error: Traceback (most recent call last):
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 87, in execute
+    result = self.execute_code(input, code_context)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 172, in execute_code
+    exec(code, environment)
+  File "<string>", line 2, in <module>
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/generic.py", line 6534, in astype
+    new_data = self._mgr.astype(dtype=dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 414, in astype
+    return self.apply(
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 354, in apply
+    applied = getattr(b, f)(**kwargs)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/blocks.py", line 616, in astype
+    new_values = astype_array_safe(values, dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 238, in astype_array_safe
+    new_values = astype_array(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 183, in astype_array
+    values = _astype_nansafe(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 134, in _astype_nansafe
+    return arr.astype(dtype, copy=True)
+ValueError: could not convert string to float: 'T2257844554'
+
+2025-07-25 15:24:19 [ERROR] Pipeline failed on step 6: could not convert string to float: 'T2257844554'
+2025-07-25 15:24:19 [INFO] Question: What's the correlation between the Rank and Peak?
+2025-07-25 15:24:19 [INFO] Running PandasAI with openai LLM...
+2025-07-25 15:24:19 [INFO] Prompt ID: fa0c35c4-78ee-4280-9032-590cd12a8e35
+2025-07-25 15:24:19 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-07-25 15:24:19 [INFO] Executing Step 0: ValidatePipelineInput
+2025-07-25 15:24:19 [INFO] Executing Step 1: CacheLookup
+2025-07-25 15:24:19 [INFO] Executing Step 2: PromptGeneration
+2025-07-25 15:24:19 [INFO] Using prompt: dfs[0]:
+  name: null
+  description: null
+  type: pd.DataFrame
+  rows: 50
+  columns: 6
+  schema:
+    fields:
+    - name: Rank
+      type: int64
+      samples:
+      - 28
+      - 5
+      - 45
+    - name: Peak
+      type: object
+      samples:
+      - '14'
+      - '3'
+      - 23RK
+    - name: Title
+      type: object
+      samples:
+      - Beauty and the Beast
+      - Jurassic Park
+      - Barbie
+    - name: Worldwide gross
+      type: object
+      samples:
+      - $1,347,280,838
+      - $1,342,139,727
+      - $1,495,696,292
+    - name: Year
+      type: int64
+      samples:
+      - 2016
+      - 2013
+      - 2014
+    - name: Ref
+      type: object
+      samples:
+      - '[# 19][# 20]'
+      - '[# 61][# 38]'
+      - '[# 50][# 51]'
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ What's the correlation between the Rank and Peak?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2025-07-25 15:24:19 [INFO] Executing Step 3: CodeGenerator
+2025-07-25 15:24:24 [INFO] HTTP Request: POST https://aipipe.org/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-25 15:24:24 [INFO] Prompt used:
+            dfs[0]:
+  name: null
+  description: null
+  type: pd.DataFrame
+  rows: 50
+  columns: 6
+  schema:
+    fields:
+    - name: Rank
+      type: int64
+      samples:
+      - 28
+      - 5
+      - 45
+    - name: Peak
+      type: object
+      samples:
+      - '14'
+      - '3'
+      - 23RK
+    - name: Title
+      type: object
+      samples:
+      - Beauty and the Beast
+      - Jurassic Park
+      - Barbie
+    - name: Worldwide gross
+      type: object
+      samples:
+      - $1,347,280,838
+      - $1,342,139,727
+      - $1,495,696,292
+    - name: Year
+      type: int64
+      samples:
+      - 2016
+      - 2013
+      - 2014
+    - name: Ref
+      type: object
+      samples:
+      - '[# 19][# 20]'
+      - '[# 61][# 38]'
+      - '[# 50][# 51]'
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ What's the correlation between the Rank and Peak?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2025-07-25 15:24:24 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+
+# Load the data
+data = {
+    'Rank': [28, 5, 45],
+    'Peak': ['14', '3', '23RK'],
+    'Title': ['Beauty and the Beast', 'Jurassic Park', 'Barbie'],
+    'Worldwide gross': ['$1,347,280,838', '$1,342,139,727', '$1,495,696,292'],
+    'Year': [2016, 2013, 2014],
+    'Ref': ['[# 19][# 20]', '[# 61][# 38]', '[# 50][# 51]']
+}
+
+df = pd.DataFrame(data)
+
+# Convert 'Peak' column to numeric, ignoring errors
+df['Peak'] = pd.to_numeric(df['Peak'], errors='coerce')
+
+# Calculate correlation between Rank and Peak
+correlation = df['Rank'].corr(df['Peak'])
+
+# Declare result variable
+result = {
+    "type": "number",
+    "value": correlation
+}
+            ```
+            
+2025-07-25 15:24:24 [INFO] Executing Step 4: CachePopulation
+2025-07-25 15:24:24 [INFO] Executing Step 5: CodeCleaning
+2025-07-25 15:24:24 [INFO] 
+Code running:
+```
+data = {'Rank': [28, 5, 45], 'Peak': ['14', '3', '23RK'], 'Title': ['Beauty and the Beast', 'Jurassic Park', 'Barbie'], 'Worldwide gross': ['$1,347,280,838', '$1,342,139,727', '$1,495,696,292'], 'Year': [2016, 2013, 2014], 'Ref': ['[# 19][# 20]', '[# 61][# 38]', '[# 50][# 51]']}
+df = dfs[0]
+df['Peak'] = pd.to_numeric(df['Peak'], errors='coerce')
+correlation = df['Rank'].corr(df['Peak'])
+result = {'type': 'number', 'value': correlation}
+        ```
+2025-07-25 15:24:24 [INFO] Executing Step 6: CodeExecution
+2025-07-25 15:24:24 [INFO] Executing Step 7: ResultValidation
+2025-07-25 15:24:24 [INFO] Answer: {'type': 'number', 'value': 0.5147903374627171}
+2025-07-25 15:24:25 [INFO] Executing Step 8: ResultParsing
+2025-07-25 15:31:43 [INFO] Question: How many $2 bn movies were released before 2020?
+2025-07-25 15:31:44 [INFO] Running PandasAI with openai LLM...
+2025-07-25 15:31:44 [INFO] Prompt ID: f95d2d55-dba4-4ec2-82b3-09a672eb5dfd
+2025-07-25 15:31:44 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-07-25 15:31:44 [INFO] Executing Step 0: ValidatePipelineInput
+2025-07-25 15:31:44 [INFO] Executing Step 1: CacheLookup
+2025-07-25 15:31:44 [INFO] Using cached response
+2025-07-25 15:31:44 [INFO] Executing Step 2: PromptGeneration
+2025-07-25 15:31:44 [INFO] Executing Step 2: Skipping...
+2025-07-25 15:31:44 [INFO] Executing Step 3: CodeGenerator
+2025-07-25 15:31:44 [INFO] Executing Step 3: Skipping...
+2025-07-25 15:31:44 [INFO] Executing Step 4: CachePopulation
+2025-07-25 15:31:44 [INFO] Executing Step 4: Skipping...
+2025-07-25 15:31:44 [INFO] Executing Step 5: CodeCleaning
+2025-07-25 15:31:44 [INFO] 
+Code running:
+```
+df = dfs[0]
+df['Worldwide gross'] = df['Worldwide gross'].str.replace('$', '').str.replace(',', '').astype(int)
+df['Year'] = df['Year'].astype(int)
+num_2bn_movies = df[(df['Worldwide gross'] >= 2000000000) & (df['Year'] < 2020)].shape[0]
+result = {'type': 'string', 'value': f'The number of $2 billion movies released before 2020 is: {num_2bn_movies}'}
+        ```
+2025-07-25 15:31:44 [INFO] Executing Step 6: CodeExecution
+2025-07-25 15:31:44 [ERROR] Failed with error: Traceback (most recent call last):
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 87, in execute
+    result = self.execute_code(input, code_context)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 172, in execute_code
+    exec(code, environment)
+  File "<string>", line 2, in <module>
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/generic.py", line 6534, in astype
+    new_data = self._mgr.astype(dtype=dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 414, in astype
+    return self.apply(
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 354, in apply
+    applied = getattr(b, f)(**kwargs)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/blocks.py", line 616, in astype
+    new_values = astype_array_safe(values, dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 238, in astype_array_safe
+    new_values = astype_array(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 183, in astype_array
+    values = _astype_nansafe(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 134, in _astype_nansafe
+    return arr.astype(dtype, copy=True)
+ValueError: invalid literal for int() with base 10: 'T2257844554'
+
+2025-07-25 15:31:44 [WARNING] Failed to execute code retrying with a correction framework [retry number: 1]
+2025-07-25 15:31:44 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2025-07-25 15:31:44 [INFO] Executing Step 0: ErrorPromptGeneration
+2025-07-25 15:31:44 [INFO] Using prompt: dfs[0]:
+  name: null
+  description: null
+  type: pd.DataFrame
+  rows: 50
+  columns: 6
+  schema:
+    fields:
+    - name: Rank
+      type: int64
+      samples:
+      - 50
+      - 22
+      - 46
+    - name: Peak
+      type: int64
+      samples:
+      - 1
+      - 34
+      - 44
+    - name: Title
+      type: object
+      samples:
+      - Moana 2
+      - 'Rogue One: A Star Wars Story'
+      - "Harry Potter and the Deathly Hallows \u2013 Part 2"
+    - name: Worldwide gross
+      type: object
+      samples:
+      - $1,045,713,802
+      - $1,338,073,645
+      - F$1,290,000,000
+    - name: Year
+      type: int64
+      samples:
+      - 2014
+      - 1999
+      - 2015
+    - name: Ref
+      type: object
+      samples:
+      - '[# 66][# 67]'
+      - '[# 49][# 47]'
+      - '[# 62][# 63]'
+
+
+The user asked the following question:
+### QUERY
+ How many $2 bn movies were released before 2020?
+
+You generated this python code:
+df = dfs[0]
+df['Worldwide gross'] = df['Worldwide gross'].str.replace('$', '').str.replace(',', '').astype(int)
+df['Year'] = df['Year'].astype(int)
+num_2bn_movies = df[(df['Worldwide gross'] >= 2000000000) & (df['Year'] < 2020)].shape[0]
+result = {'type': 'string', 'value': f'The number of $2 billion movies released before 2020 is: {num_2bn_movies}'}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 87, in execute
+    result = self.execute_code(input, code_context)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 172, in execute_code
+    exec(code, environment)
+  File "<string>", line 2, in <module>
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/generic.py", line 6534, in astype
+    new_data = self._mgr.astype(dtype=dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 414, in astype
+    return self.apply(
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 354, in apply
+    applied = getattr(b, f)(**kwargs)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/blocks.py", line 616, in astype
+    new_values = astype_array_safe(values, dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 238, in astype_array_safe
+    new_values = astype_array(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 183, in astype_array
+    values = _astype_nansafe(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 134, in _astype_nansafe
+    return arr.astype(dtype, copy=True)
+ValueError: invalid literal for int() with base 10: 'T2257844554'
+
+
+Fix the python code above and return the new python code:
+2025-07-25 15:31:44 [INFO] Executing Step 1: CodeGenerator
+2025-07-25 15:31:48 [INFO] HTTP Request: POST https://aipipe.org/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-25 15:31:48 [INFO] Prompt used:
+            dfs[0]:
+  name: null
+  description: null
+  type: pd.DataFrame
+  rows: 50
+  columns: 6
+  schema:
+    fields:
+    - name: Rank
+      type: int64
+      samples:
+      - 50
+      - 22
+      - 46
+    - name: Peak
+      type: int64
+      samples:
+      - 1
+      - 34
+      - 44
+    - name: Title
+      type: object
+      samples:
+      - Moana 2
+      - 'Rogue One: A Star Wars Story'
+      - "Harry Potter and the Deathly Hallows \u2013 Part 2"
+    - name: Worldwide gross
+      type: object
+      samples:
+      - $1,045,713,802
+      - $1,338,073,645
+      - F$1,290,000,000
+    - name: Year
+      type: int64
+      samples:
+      - 2014
+      - 1999
+      - 2015
+    - name: Ref
+      type: object
+      samples:
+      - '[# 66][# 67]'
+      - '[# 49][# 47]'
+      - '[# 62][# 63]'
+
+
+The user asked the following question:
+### QUERY
+ How many $2 bn movies were released before 2020?
+
+You generated this python code:
+df = dfs[0]
+df['Worldwide gross'] = df['Worldwide gross'].str.replace('$', '').str.replace(',', '').astype(int)
+df['Year'] = df['Year'].astype(int)
+num_2bn_movies = df[(df['Worldwide gross'] >= 2000000000) & (df['Year'] < 2020)].shape[0]
+result = {'type': 'string', 'value': f'The number of $2 billion movies released before 2020 is: {num_2bn_movies}'}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 87, in execute
+    result = self.execute_code(input, code_context)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 172, in execute_code
+    exec(code, environment)
+  File "<string>", line 2, in <module>
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/generic.py", line 6534, in astype
+    new_data = self._mgr.astype(dtype=dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 414, in astype
+    return self.apply(
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 354, in apply
+    applied = getattr(b, f)(**kwargs)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/blocks.py", line 616, in astype
+    new_values = astype_array_safe(values, dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 238, in astype_array_safe
+    new_values = astype_array(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 183, in astype_array
+    values = _astype_nansafe(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 134, in _astype_nansafe
+    return arr.astype(dtype, copy=True)
+ValueError: invalid literal for int() with base 10: 'T2257844554'
+
+
+Fix the python code above and return the new python code:
+            
+2025-07-25 15:31:48 [INFO] Code generated:
+            ```
+            import pandas as pd
+
+df = dfs[0]
+df['Worldwide gross'] = df['Worldwide gross'].str.replace('$', '').str.replace(',', '').str.replace('F', '').astype(float)
+df['Year'] = df['Year'].astype(int)
+num_2bn_movies = df[(df['Worldwide gross'] >= 2000000000) & (df['Year'] < 2020)].shape[0]
+result = {'type': 'string', 'value': f'The number of $2 billion movies released before 2020 is: {num_2bn_movies}'}
+            ```
+            
+2025-07-25 15:31:48 [INFO] Executing Step 2: CodeCleaning
+2025-07-25 15:31:48 [INFO] 
+Code running:
+```
+df = dfs[0]
+df['Worldwide gross'] = df['Worldwide gross'].str.replace('$', '').str.replace(',', '').str.replace('F', '').astype(float)
+df['Year'] = df['Year'].astype(int)
+num_2bn_movies = df[(df['Worldwide gross'] >= 2000000000) & (df['Year'] < 2020)].shape[0]
+result = {'type': 'string', 'value': f'The number of $2 billion movies released before 2020 is: {num_2bn_movies}'}
+        ```
+2025-07-25 15:31:48 [ERROR] Failed with error: Traceback (most recent call last):
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 87, in execute
+    result = self.execute_code(input, code_context)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 172, in execute_code
+    exec(code, environment)
+  File "<string>", line 2, in <module>
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/generic.py", line 6534, in astype
+    new_data = self._mgr.astype(dtype=dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 414, in astype
+    return self.apply(
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 354, in apply
+    applied = getattr(b, f)(**kwargs)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/blocks.py", line 616, in astype
+    new_values = astype_array_safe(values, dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 238, in astype_array_safe
+    new_values = astype_array(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 183, in astype_array
+    values = _astype_nansafe(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 134, in _astype_nansafe
+    return arr.astype(dtype, copy=True)
+ValueError: invalid literal for int() with base 10: 'T2257844554'
+
+2025-07-25 15:31:48 [WARNING] Failed to execute code retrying with a correction framework [retry number: 2]
+2025-07-25 15:31:48 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2025-07-25 15:31:48 [INFO] Executing Step 0: ErrorPromptGeneration
+2025-07-25 15:31:48 [INFO] Using prompt: dfs[0]:
+  name: null
+  description: null
+  type: pd.DataFrame
+  rows: 50
+  columns: 6
+  schema:
+    fields:
+    - name: Rank
+      type: int64
+      samples:
+      - 50
+      - 22
+      - 46
+    - name: Peak
+      type: int64
+      samples:
+      - 1
+      - 34
+      - 44
+    - name: Title
+      type: object
+      samples:
+      - Moana 2
+      - 'Rogue One: A Star Wars Story'
+      - "Harry Potter and the Deathly Hallows \u2013 Part 2"
+    - name: Worldwide gross
+      type: object
+      samples:
+      - $1,045,713,802
+      - $1,338,073,645
+      - F$1,290,000,000
+    - name: Year
+      type: int64
+      samples:
+      - 2014
+      - 1999
+      - 2015
+    - name: Ref
+      type: object
+      samples:
+      - '[# 66][# 67]'
+      - '[# 49][# 47]'
+      - '[# 62][# 63]'
+
+
+The user asked the following question:
+### QUERY
+ How many $2 bn movies were released before 2020?
+
+You generated this python code:
+df = dfs[0]
+df['Worldwide gross'] = df['Worldwide gross'].str.replace('$', '').str.replace(',', '').str.replace('F', '').astype(float)
+df['Year'] = df['Year'].astype(int)
+num_2bn_movies = df[(df['Worldwide gross'] >= 2000000000) & (df['Year'] < 2020)].shape[0]
+result = {'type': 'string', 'value': f'The number of $2 billion movies released before 2020 is: {num_2bn_movies}'}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 87, in execute
+    result = self.execute_code(input, code_context)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 172, in execute_code
+    exec(code, environment)
+  File "<string>", line 2, in <module>
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/generic.py", line 6534, in astype
+    new_data = self._mgr.astype(dtype=dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 414, in astype
+    return self.apply(
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 354, in apply
+    applied = getattr(b, f)(**kwargs)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/blocks.py", line 616, in astype
+    new_values = astype_array_safe(values, dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 238, in astype_array_safe
+    new_values = astype_array(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 183, in astype_array
+    values = _astype_nansafe(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 134, in _astype_nansafe
+    return arr.astype(dtype, copy=True)
+ValueError: invalid literal for int() with base 10: 'T2257844554'
+
+
+Fix the python code above and return the new python code:
+2025-07-25 15:31:48 [INFO] Executing Step 1: CodeGenerator
+2025-07-25 15:31:54 [INFO] HTTP Request: POST https://aipipe.org/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-25 15:31:54 [INFO] Prompt used:
+            dfs[0]:
+  name: null
+  description: null
+  type: pd.DataFrame
+  rows: 50
+  columns: 6
+  schema:
+    fields:
+    - name: Rank
+      type: int64
+      samples:
+      - 50
+      - 22
+      - 46
+    - name: Peak
+      type: int64
+      samples:
+      - 1
+      - 34
+      - 44
+    - name: Title
+      type: object
+      samples:
+      - Moana 2
+      - 'Rogue One: A Star Wars Story'
+      - "Harry Potter and the Deathly Hallows \u2013 Part 2"
+    - name: Worldwide gross
+      type: object
+      samples:
+      - $1,045,713,802
+      - $1,338,073,645
+      - F$1,290,000,000
+    - name: Year
+      type: int64
+      samples:
+      - 2014
+      - 1999
+      - 2015
+    - name: Ref
+      type: object
+      samples:
+      - '[# 66][# 67]'
+      - '[# 49][# 47]'
+      - '[# 62][# 63]'
+
+
+The user asked the following question:
+### QUERY
+ How many $2 bn movies were released before 2020?
+
+You generated this python code:
+df = dfs[0]
+df['Worldwide gross'] = df['Worldwide gross'].str.replace('$', '').str.replace(',', '').str.replace('F', '').astype(float)
+df['Year'] = df['Year'].astype(int)
+num_2bn_movies = df[(df['Worldwide gross'] >= 2000000000) & (df['Year'] < 2020)].shape[0]
+result = {'type': 'string', 'value': f'The number of $2 billion movies released before 2020 is: {num_2bn_movies}'}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 87, in execute
+    result = self.execute_code(input, code_context)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 172, in execute_code
+    exec(code, environment)
+  File "<string>", line 2, in <module>
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/generic.py", line 6534, in astype
+    new_data = self._mgr.astype(dtype=dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 414, in astype
+    return self.apply(
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 354, in apply
+    applied = getattr(b, f)(**kwargs)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/blocks.py", line 616, in astype
+    new_values = astype_array_safe(values, dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 238, in astype_array_safe
+    new_values = astype_array(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 183, in astype_array
+    values = _astype_nansafe(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 134, in _astype_nansafe
+    return arr.astype(dtype, copy=True)
+ValueError: invalid literal for int() with base 10: 'T2257844554'
+
+
+Fix the python code above and return the new python code:
+            
+2025-07-25 15:31:54 [INFO] Code generated:
+            ```
+            import pandas as pd
+
+df = dfs[0]
+df['Worldwide gross'] = df['Worldwide gross'].str.replace('$', '').str.replace(',', '').str.replace('F', '').astype(float)
+df['Year'] = pd.to_numeric(df['Year'], errors='coerce')
+num_2bn_movies = df[(df['Worldwide gross'] >= 2000000000) & (df['Year'] < 2020)].shape[0]
+result = {'type': 'string', 'value': f'The number of $2 billion movies released before 2020 is: {num_2bn_movies}'}
+            ```
+            
+2025-07-25 15:31:54 [INFO] Executing Step 2: CodeCleaning
+2025-07-25 15:31:54 [INFO] 
+Code running:
+```
+df = dfs[0]
+df['Worldwide gross'] = df['Worldwide gross'].str.replace('$', '').str.replace(',', '').str.replace('F', '').astype(float)
+df['Year'] = pd.to_numeric(df['Year'], errors='coerce')
+num_2bn_movies = df[(df['Worldwide gross'] >= 2000000000) & (df['Year'] < 2020)].shape[0]
+result = {'type': 'string', 'value': f'The number of $2 billion movies released before 2020 is: {num_2bn_movies}'}
+        ```
+2025-07-25 15:31:54 [ERROR] Failed with error: Traceback (most recent call last):
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 87, in execute
+    result = self.execute_code(input, code_context)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 172, in execute_code
+    exec(code, environment)
+  File "<string>", line 2, in <module>
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/generic.py", line 6534, in astype
+    new_data = self._mgr.astype(dtype=dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 414, in astype
+    return self.apply(
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 354, in apply
+    applied = getattr(b, f)(**kwargs)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/blocks.py", line 616, in astype
+    new_values = astype_array_safe(values, dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 238, in astype_array_safe
+    new_values = astype_array(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 183, in astype_array
+    values = _astype_nansafe(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 134, in _astype_nansafe
+    return arr.astype(dtype, copy=True)
+ValueError: invalid literal for int() with base 10: 'T2257844554'
+
+2025-07-25 15:31:54 [WARNING] Failed to execute code retrying with a correction framework [retry number: 3]
+2025-07-25 15:31:54 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2025-07-25 15:31:54 [INFO] Executing Step 0: ErrorPromptGeneration
+2025-07-25 15:31:54 [INFO] Using prompt: dfs[0]:
+  name: null
+  description: null
+  type: pd.DataFrame
+  rows: 50
+  columns: 6
+  schema:
+    fields:
+    - name: Rank
+      type: int64
+      samples:
+      - 50
+      - 22
+      - 46
+    - name: Peak
+      type: int64
+      samples:
+      - 1
+      - 34
+      - 44
+    - name: Title
+      type: object
+      samples:
+      - Moana 2
+      - 'Rogue One: A Star Wars Story'
+      - "Harry Potter and the Deathly Hallows \u2013 Part 2"
+    - name: Worldwide gross
+      type: object
+      samples:
+      - $1,045,713,802
+      - $1,338,073,645
+      - F$1,290,000,000
+    - name: Year
+      type: int64
+      samples:
+      - 2014
+      - 1999
+      - 2015
+    - name: Ref
+      type: object
+      samples:
+      - '[# 66][# 67]'
+      - '[# 49][# 47]'
+      - '[# 62][# 63]'
+
+
+The user asked the following question:
+### QUERY
+ How many $2 bn movies were released before 2020?
+
+You generated this python code:
+df = dfs[0]
+df['Worldwide gross'] = df['Worldwide gross'].str.replace('$', '').str.replace(',', '').str.replace('F', '').astype(float)
+df['Year'] = pd.to_numeric(df['Year'], errors='coerce')
+num_2bn_movies = df[(df['Worldwide gross'] >= 2000000000) & (df['Year'] < 2020)].shape[0]
+result = {'type': 'string', 'value': f'The number of $2 billion movies released before 2020 is: {num_2bn_movies}'}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 87, in execute
+    result = self.execute_code(input, code_context)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 172, in execute_code
+    exec(code, environment)
+  File "<string>", line 2, in <module>
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/generic.py", line 6534, in astype
+    new_data = self._mgr.astype(dtype=dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 414, in astype
+    return self.apply(
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 354, in apply
+    applied = getattr(b, f)(**kwargs)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/blocks.py", line 616, in astype
+    new_values = astype_array_safe(values, dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 238, in astype_array_safe
+    new_values = astype_array(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 183, in astype_array
+    values = _astype_nansafe(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 134, in _astype_nansafe
+    return arr.astype(dtype, copy=True)
+ValueError: invalid literal for int() with base 10: 'T2257844554'
+
+
+Fix the python code above and return the new python code:
+2025-07-25 15:31:54 [INFO] Executing Step 1: CodeGenerator
+2025-07-25 15:31:57 [INFO] HTTP Request: POST https://aipipe.org/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-25 15:31:57 [INFO] Prompt used:
+            dfs[0]:
+  name: null
+  description: null
+  type: pd.DataFrame
+  rows: 50
+  columns: 6
+  schema:
+    fields:
+    - name: Rank
+      type: int64
+      samples:
+      - 50
+      - 22
+      - 46
+    - name: Peak
+      type: int64
+      samples:
+      - 1
+      - 34
+      - 44
+    - name: Title
+      type: object
+      samples:
+      - Moana 2
+      - 'Rogue One: A Star Wars Story'
+      - "Harry Potter and the Deathly Hallows \u2013 Part 2"
+    - name: Worldwide gross
+      type: object
+      samples:
+      - $1,045,713,802
+      - $1,338,073,645
+      - F$1,290,000,000
+    - name: Year
+      type: int64
+      samples:
+      - 2014
+      - 1999
+      - 2015
+    - name: Ref
+      type: object
+      samples:
+      - '[# 66][# 67]'
+      - '[# 49][# 47]'
+      - '[# 62][# 63]'
+
+
+The user asked the following question:
+### QUERY
+ How many $2 bn movies were released before 2020?
+
+You generated this python code:
+df = dfs[0]
+df['Worldwide gross'] = df['Worldwide gross'].str.replace('$', '').str.replace(',', '').str.replace('F', '').astype(float)
+df['Year'] = pd.to_numeric(df['Year'], errors='coerce')
+num_2bn_movies = df[(df['Worldwide gross'] >= 2000000000) & (df['Year'] < 2020)].shape[0]
+result = {'type': 'string', 'value': f'The number of $2 billion movies released before 2020 is: {num_2bn_movies}'}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 87, in execute
+    result = self.execute_code(input, code_context)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 172, in execute_code
+    exec(code, environment)
+  File "<string>", line 2, in <module>
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/generic.py", line 6534, in astype
+    new_data = self._mgr.astype(dtype=dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 414, in astype
+    return self.apply(
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 354, in apply
+    applied = getattr(b, f)(**kwargs)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/blocks.py", line 616, in astype
+    new_values = astype_array_safe(values, dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 238, in astype_array_safe
+    new_values = astype_array(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 183, in astype_array
+    values = _astype_nansafe(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 134, in _astype_nansafe
+    return arr.astype(dtype, copy=True)
+ValueError: invalid literal for int() with base 10: 'T2257844554'
+
+
+Fix the python code above and return the new python code:
+            
+2025-07-25 15:31:57 [INFO] Code generated:
+            ```
+            import pandas as pd
+
+df = dfs[0]
+df['Worldwide gross'] = df['Worldwide gross'].str.replace('$', '').str.replace(',', '').str.replace('F', '').astype(float)
+df['Year'] = pd.to_numeric(df['Year'], errors='coerce')
+num_2bn_movies = df[(df['Worldwide gross'] >= 2000000000) & (df['Year'] < 2020)].shape[0]
+result = {'type': 'string', 'value': f'The number of $2 billion movies released before 2020 is: {num_2bn_movies}'}
+            ```
+            
+2025-07-25 15:31:57 [INFO] Executing Step 2: CodeCleaning
+2025-07-25 15:31:57 [INFO] 
+Code running:
+```
+df = dfs[0]
+df['Worldwide gross'] = df['Worldwide gross'].str.replace('$', '').str.replace(',', '').str.replace('F', '').astype(float)
+df['Year'] = pd.to_numeric(df['Year'], errors='coerce')
+num_2bn_movies = df[(df['Worldwide gross'] >= 2000000000) & (df['Year'] < 2020)].shape[0]
+result = {'type': 'string', 'value': f'The number of $2 billion movies released before 2020 is: {num_2bn_movies}'}
+        ```
+2025-07-25 15:31:57 [ERROR] Failed with error: Traceback (most recent call last):
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 87, in execute
+    result = self.execute_code(input, code_context)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 172, in execute_code
+    exec(code, environment)
+  File "<string>", line 2, in <module>
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/generic.py", line 6534, in astype
+    new_data = self._mgr.astype(dtype=dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 414, in astype
+    return self.apply(
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 354, in apply
+    applied = getattr(b, f)(**kwargs)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/blocks.py", line 616, in astype
+    new_values = astype_array_safe(values, dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 238, in astype_array_safe
+    new_values = astype_array(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 183, in astype_array
+    values = _astype_nansafe(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 134, in _astype_nansafe
+    return arr.astype(dtype, copy=True)
+ValueError: invalid literal for int() with base 10: 'T2257844554'
+
+2025-07-25 15:31:57 [ERROR] Pipeline failed on step 6: invalid literal for int() with base 10: 'T2257844554'
+2025-07-25 15:31:57 [INFO] Question: Which is the earliest film that grossed over $1.5 bn?
+2025-07-25 15:31:57 [INFO] Running PandasAI with openai LLM...
+2025-07-25 15:31:57 [INFO] Prompt ID: 986b6cb7-6ef0-492e-97ae-9872f67c9ffc
+2025-07-25 15:31:57 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-07-25 15:31:57 [INFO] Executing Step 0: ValidatePipelineInput
+2025-07-25 15:31:57 [INFO] Executing Step 1: CacheLookup
+2025-07-25 15:31:57 [INFO] Using cached response
+2025-07-25 15:31:57 [INFO] Executing Step 2: PromptGeneration
+2025-07-25 15:31:57 [INFO] Executing Step 2: Skipping...
+2025-07-25 15:31:57 [INFO] Executing Step 3: CodeGenerator
+2025-07-25 15:31:57 [INFO] Executing Step 3: Skipping...
+2025-07-25 15:31:57 [INFO] Executing Step 4: CachePopulation
+2025-07-25 15:31:57 [INFO] Executing Step 4: Skipping...
+2025-07-25 15:31:57 [INFO] Executing Step 5: CodeCleaning
+2025-07-25 15:31:57 [INFO] 
+Code running:
+```
+df = dfs[0]
+df['Worldwide gross'] = df['Worldwide gross'].str.replace('$', '').str.replace(',', '').astype(float)
+earliest_film_over_1_5bn = df[df['Worldwide gross'] > 1500000000].sort_values('Year').iloc[0]['Title']
+result = {'type': 'string', 'value': f'The earliest film that grossed over $1.5 billion is {earliest_film_over_1_5bn}.'}
+        ```
+2025-07-25 15:31:57 [INFO] Executing Step 6: CodeExecution
+2025-07-25 15:31:57 [ERROR] Failed with error: Traceback (most recent call last):
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 87, in execute
+    result = self.execute_code(input, code_context)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 172, in execute_code
+    exec(code, environment)
+  File "<string>", line 2, in <module>
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/generic.py", line 6534, in astype
+    new_data = self._mgr.astype(dtype=dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 414, in astype
+    return self.apply(
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 354, in apply
+    applied = getattr(b, f)(**kwargs)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/blocks.py", line 616, in astype
+    new_values = astype_array_safe(values, dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 238, in astype_array_safe
+    new_values = astype_array(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 183, in astype_array
+    values = _astype_nansafe(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 134, in _astype_nansafe
+    return arr.astype(dtype, copy=True)
+ValueError: could not convert string to float: 'T2257844554'
+
+2025-07-25 15:31:57 [WARNING] Failed to execute code retrying with a correction framework [retry number: 1]
+2025-07-25 15:31:57 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2025-07-25 15:31:57 [INFO] Executing Step 0: ErrorPromptGeneration
+2025-07-25 15:31:57 [INFO] Using prompt: dfs[0]:
+  name: null
+  description: null
+  type: pd.DataFrame
+  rows: 50
+  columns: 6
+  schema:
+    fields:
+    - name: Rank
+      type: int64
+      samples:
+      - 50
+      - 22
+      - 46
+    - name: Peak
+      type: int64
+      samples:
+      - 1
+      - 34
+      - 44
+    - name: Title
+      type: object
+      samples:
+      - Moana 2
+      - 'Rogue One: A Star Wars Story'
+      - "Harry Potter and the Deathly Hallows \u2013 Part 2"
+    - name: Worldwide gross
+      type: object
+      samples:
+      - $1,045,713,802
+      - $1,338,073,645
+      - F$1,290,000,000
+    - name: Year
+      type: int64
+      samples:
+      - 2014
+      - 1999
+      - 2015
+    - name: Ref
+      type: object
+      samples:
+      - '[# 66][# 67]'
+      - '[# 49][# 47]'
+      - '[# 62][# 63]'
+
+
+The user asked the following question:
+### QUERY
+ How many $2 bn movies were released before 2020?
+### QUERY
+ Which is the earliest film that grossed over $1.5 bn?
+
+You generated this python code:
+df = dfs[0]
+df['Worldwide gross'] = df['Worldwide gross'].str.replace('$', '').str.replace(',', '').astype(float)
+earliest_film_over_1_5bn = df[df['Worldwide gross'] > 1500000000].sort_values('Year').iloc[0]['Title']
+result = {'type': 'string', 'value': f'The earliest film that grossed over $1.5 billion is {earliest_film_over_1_5bn}.'}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 87, in execute
+    result = self.execute_code(input, code_context)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 172, in execute_code
+    exec(code, environment)
+  File "<string>", line 2, in <module>
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/generic.py", line 6534, in astype
+    new_data = self._mgr.astype(dtype=dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 414, in astype
+    return self.apply(
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 354, in apply
+    applied = getattr(b, f)(**kwargs)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/blocks.py", line 616, in astype
+    new_values = astype_array_safe(values, dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 238, in astype_array_safe
+    new_values = astype_array(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 183, in astype_array
+    values = _astype_nansafe(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 134, in _astype_nansafe
+    return arr.astype(dtype, copy=True)
+ValueError: could not convert string to float: 'T2257844554'
+
+
+Fix the python code above and return the new python code:
+2025-07-25 15:31:57 [INFO] Executing Step 1: CodeGenerator
+2025-07-25 15:32:00 [INFO] HTTP Request: POST https://aipipe.org/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-25 15:32:00 [INFO] Prompt used:
+            dfs[0]:
+  name: null
+  description: null
+  type: pd.DataFrame
+  rows: 50
+  columns: 6
+  schema:
+    fields:
+    - name: Rank
+      type: int64
+      samples:
+      - 50
+      - 22
+      - 46
+    - name: Peak
+      type: int64
+      samples:
+      - 1
+      - 34
+      - 44
+    - name: Title
+      type: object
+      samples:
+      - Moana 2
+      - 'Rogue One: A Star Wars Story'
+      - "Harry Potter and the Deathly Hallows \u2013 Part 2"
+    - name: Worldwide gross
+      type: object
+      samples:
+      - $1,045,713,802
+      - $1,338,073,645
+      - F$1,290,000,000
+    - name: Year
+      type: int64
+      samples:
+      - 2014
+      - 1999
+      - 2015
+    - name: Ref
+      type: object
+      samples:
+      - '[# 66][# 67]'
+      - '[# 49][# 47]'
+      - '[# 62][# 63]'
+
+
+The user asked the following question:
+### QUERY
+ How many $2 bn movies were released before 2020?
+### QUERY
+ Which is the earliest film that grossed over $1.5 bn?
+
+You generated this python code:
+df = dfs[0]
+df['Worldwide gross'] = df['Worldwide gross'].str.replace('$', '').str.replace(',', '').astype(float)
+earliest_film_over_1_5bn = df[df['Worldwide gross'] > 1500000000].sort_values('Year').iloc[0]['Title']
+result = {'type': 'string', 'value': f'The earliest film that grossed over $1.5 billion is {earliest_film_over_1_5bn}.'}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 87, in execute
+    result = self.execute_code(input, code_context)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 172, in execute_code
+    exec(code, environment)
+  File "<string>", line 2, in <module>
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/generic.py", line 6534, in astype
+    new_data = self._mgr.astype(dtype=dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 414, in astype
+    return self.apply(
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 354, in apply
+    applied = getattr(b, f)(**kwargs)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/blocks.py", line 616, in astype
+    new_values = astype_array_safe(values, dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 238, in astype_array_safe
+    new_values = astype_array(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 183, in astype_array
+    values = _astype_nansafe(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 134, in _astype_nansafe
+    return arr.astype(dtype, copy=True)
+ValueError: could not convert string to float: 'T2257844554'
+
+
+Fix the python code above and return the new python code:
+            
+2025-07-25 15:32:00 [INFO] Code generated:
+            ```
+            df = dfs[0]
+df['Worldwide gross'] = df['Worldwide gross'].str.replace('$', '').str.replace(',', '').str.replace('F', '').astype(float)
+earliest_film_over_1_5bn = df[df['Worldwide gross'] > 1500000000].sort_values('Year').iloc[0]['Title']
+result = {'type': 'string', 'value': f'The earliest film that grossed over $1.5 billion is {earliest_film_over_1_5bn}.'}
+            ```
+            
+2025-07-25 15:32:00 [INFO] Executing Step 2: CodeCleaning
+2025-07-25 15:32:01 [INFO] 
+Code running:
+```
+df = dfs[0]
+df['Worldwide gross'] = df['Worldwide gross'].str.replace('$', '').str.replace(',', '').str.replace('F', '').astype(float)
+earliest_film_over_1_5bn = df[df['Worldwide gross'] > 1500000000].sort_values('Year').iloc[0]['Title']
+result = {'type': 'string', 'value': f'The earliest film that grossed over $1.5 billion is {earliest_film_over_1_5bn}.'}
+        ```
+2025-07-25 15:32:01 [ERROR] Failed with error: Traceback (most recent call last):
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 87, in execute
+    result = self.execute_code(input, code_context)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 172, in execute_code
+    exec(code, environment)
+  File "<string>", line 2, in <module>
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/generic.py", line 6534, in astype
+    new_data = self._mgr.astype(dtype=dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 414, in astype
+    return self.apply(
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 354, in apply
+    applied = getattr(b, f)(**kwargs)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/blocks.py", line 616, in astype
+    new_values = astype_array_safe(values, dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 238, in astype_array_safe
+    new_values = astype_array(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 183, in astype_array
+    values = _astype_nansafe(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 134, in _astype_nansafe
+    return arr.astype(dtype, copy=True)
+ValueError: could not convert string to float: 'T2257844554'
+
+2025-07-25 15:32:01 [WARNING] Failed to execute code retrying with a correction framework [retry number: 2]
+2025-07-25 15:32:01 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2025-07-25 15:32:01 [INFO] Executing Step 0: ErrorPromptGeneration
+2025-07-25 15:32:01 [INFO] Using prompt: dfs[0]:
+  name: null
+  description: null
+  type: pd.DataFrame
+  rows: 50
+  columns: 6
+  schema:
+    fields:
+    - name: Rank
+      type: int64
+      samples:
+      - 50
+      - 22
+      - 46
+    - name: Peak
+      type: int64
+      samples:
+      - 1
+      - 34
+      - 44
+    - name: Title
+      type: object
+      samples:
+      - Moana 2
+      - 'Rogue One: A Star Wars Story'
+      - "Harry Potter and the Deathly Hallows \u2013 Part 2"
+    - name: Worldwide gross
+      type: object
+      samples:
+      - $1,045,713,802
+      - $1,338,073,645
+      - F$1,290,000,000
+    - name: Year
+      type: int64
+      samples:
+      - 2014
+      - 1999
+      - 2015
+    - name: Ref
+      type: object
+      samples:
+      - '[# 66][# 67]'
+      - '[# 49][# 47]'
+      - '[# 62][# 63]'
+
+
+The user asked the following question:
+### QUERY
+ How many $2 bn movies were released before 2020?
+### QUERY
+ Which is the earliest film that grossed over $1.5 bn?
+
+You generated this python code:
+df = dfs[0]
+df['Worldwide gross'] = df['Worldwide gross'].str.replace('$', '').str.replace(',', '').str.replace('F', '').astype(float)
+earliest_film_over_1_5bn = df[df['Worldwide gross'] > 1500000000].sort_values('Year').iloc[0]['Title']
+result = {'type': 'string', 'value': f'The earliest film that grossed over $1.5 billion is {earliest_film_over_1_5bn}.'}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 87, in execute
+    result = self.execute_code(input, code_context)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 172, in execute_code
+    exec(code, environment)
+  File "<string>", line 2, in <module>
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/generic.py", line 6534, in astype
+    new_data = self._mgr.astype(dtype=dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 414, in astype
+    return self.apply(
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 354, in apply
+    applied = getattr(b, f)(**kwargs)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/blocks.py", line 616, in astype
+    new_values = astype_array_safe(values, dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 238, in astype_array_safe
+    new_values = astype_array(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 183, in astype_array
+    values = _astype_nansafe(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 134, in _astype_nansafe
+    return arr.astype(dtype, copy=True)
+ValueError: could not convert string to float: 'T2257844554'
+
+
+Fix the python code above and return the new python code:
+2025-07-25 15:32:01 [INFO] Executing Step 1: CodeGenerator
+2025-07-25 15:32:03 [INFO] HTTP Request: POST https://aipipe.org/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-25 15:32:03 [INFO] Prompt used:
+            dfs[0]:
+  name: null
+  description: null
+  type: pd.DataFrame
+  rows: 50
+  columns: 6
+  schema:
+    fields:
+    - name: Rank
+      type: int64
+      samples:
+      - 50
+      - 22
+      - 46
+    - name: Peak
+      type: int64
+      samples:
+      - 1
+      - 34
+      - 44
+    - name: Title
+      type: object
+      samples:
+      - Moana 2
+      - 'Rogue One: A Star Wars Story'
+      - "Harry Potter and the Deathly Hallows \u2013 Part 2"
+    - name: Worldwide gross
+      type: object
+      samples:
+      - $1,045,713,802
+      - $1,338,073,645
+      - F$1,290,000,000
+    - name: Year
+      type: int64
+      samples:
+      - 2014
+      - 1999
+      - 2015
+    - name: Ref
+      type: object
+      samples:
+      - '[# 66][# 67]'
+      - '[# 49][# 47]'
+      - '[# 62][# 63]'
+
+
+The user asked the following question:
+### QUERY
+ How many $2 bn movies were released before 2020?
+### QUERY
+ Which is the earliest film that grossed over $1.5 bn?
+
+You generated this python code:
+df = dfs[0]
+df['Worldwide gross'] = df['Worldwide gross'].str.replace('$', '').str.replace(',', '').str.replace('F', '').astype(float)
+earliest_film_over_1_5bn = df[df['Worldwide gross'] > 1500000000].sort_values('Year').iloc[0]['Title']
+result = {'type': 'string', 'value': f'The earliest film that grossed over $1.5 billion is {earliest_film_over_1_5bn}.'}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 87, in execute
+    result = self.execute_code(input, code_context)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 172, in execute_code
+    exec(code, environment)
+  File "<string>", line 2, in <module>
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/generic.py", line 6534, in astype
+    new_data = self._mgr.astype(dtype=dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 414, in astype
+    return self.apply(
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 354, in apply
+    applied = getattr(b, f)(**kwargs)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/blocks.py", line 616, in astype
+    new_values = astype_array_safe(values, dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 238, in astype_array_safe
+    new_values = astype_array(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 183, in astype_array
+    values = _astype_nansafe(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 134, in _astype_nansafe
+    return arr.astype(dtype, copy=True)
+ValueError: could not convert string to float: 'T2257844554'
+
+
+Fix the python code above and return the new python code:
+            
+2025-07-25 15:32:03 [INFO] Code generated:
+            ```
+            import pandas as pd
+
+df = dfs[0]
+df['Worldwide gross'] = df['Worldwide gross'].str.replace('$', '').str.replace(',', '').str.replace('F', '').astype(float)
+earliest_film_over_1_5bn = df[df['Worldwide gross'] > 1500000000].sort_values('Year').iloc[0]['Title']
+result = {'type': 'string', 'value': f'The earliest film that grossed over $1.5 billion is {earliest_film_over_1_5bn}.'}
+            ```
+            
+2025-07-25 15:32:03 [INFO] Executing Step 2: CodeCleaning
+2025-07-25 15:32:03 [INFO] 
+Code running:
+```
+df = dfs[0]
+df['Worldwide gross'] = df['Worldwide gross'].str.replace('$', '').str.replace(',', '').str.replace('F', '').astype(float)
+earliest_film_over_1_5bn = df[df['Worldwide gross'] > 1500000000].sort_values('Year').iloc[0]['Title']
+result = {'type': 'string', 'value': f'The earliest film that grossed over $1.5 billion is {earliest_film_over_1_5bn}.'}
+        ```
+2025-07-25 15:32:03 [ERROR] Failed with error: Traceback (most recent call last):
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 87, in execute
+    result = self.execute_code(input, code_context)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 172, in execute_code
+    exec(code, environment)
+  File "<string>", line 2, in <module>
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/generic.py", line 6534, in astype
+    new_data = self._mgr.astype(dtype=dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 414, in astype
+    return self.apply(
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 354, in apply
+    applied = getattr(b, f)(**kwargs)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/blocks.py", line 616, in astype
+    new_values = astype_array_safe(values, dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 238, in astype_array_safe
+    new_values = astype_array(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 183, in astype_array
+    values = _astype_nansafe(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 134, in _astype_nansafe
+    return arr.astype(dtype, copy=True)
+ValueError: could not convert string to float: 'T2257844554'
+
+2025-07-25 15:32:03 [WARNING] Failed to execute code retrying with a correction framework [retry number: 3]
+2025-07-25 15:32:03 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2025-07-25 15:32:03 [INFO] Executing Step 0: ErrorPromptGeneration
+2025-07-25 15:32:03 [INFO] Using prompt: dfs[0]:
+  name: null
+  description: null
+  type: pd.DataFrame
+  rows: 50
+  columns: 6
+  schema:
+    fields:
+    - name: Rank
+      type: int64
+      samples:
+      - 50
+      - 22
+      - 46
+    - name: Peak
+      type: int64
+      samples:
+      - 1
+      - 34
+      - 44
+    - name: Title
+      type: object
+      samples:
+      - Moana 2
+      - 'Rogue One: A Star Wars Story'
+      - "Harry Potter and the Deathly Hallows \u2013 Part 2"
+    - name: Worldwide gross
+      type: object
+      samples:
+      - $1,045,713,802
+      - $1,338,073,645
+      - F$1,290,000,000
+    - name: Year
+      type: int64
+      samples:
+      - 2014
+      - 1999
+      - 2015
+    - name: Ref
+      type: object
+      samples:
+      - '[# 66][# 67]'
+      - '[# 49][# 47]'
+      - '[# 62][# 63]'
+
+
+The user asked the following question:
+### QUERY
+ How many $2 bn movies were released before 2020?
+### QUERY
+ Which is the earliest film that grossed over $1.5 bn?
+
+You generated this python code:
+df = dfs[0]
+df['Worldwide gross'] = df['Worldwide gross'].str.replace('$', '').str.replace(',', '').str.replace('F', '').astype(float)
+earliest_film_over_1_5bn = df[df['Worldwide gross'] > 1500000000].sort_values('Year').iloc[0]['Title']
+result = {'type': 'string', 'value': f'The earliest film that grossed over $1.5 billion is {earliest_film_over_1_5bn}.'}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 87, in execute
+    result = self.execute_code(input, code_context)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 172, in execute_code
+    exec(code, environment)
+  File "<string>", line 2, in <module>
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/generic.py", line 6534, in astype
+    new_data = self._mgr.astype(dtype=dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 414, in astype
+    return self.apply(
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 354, in apply
+    applied = getattr(b, f)(**kwargs)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/blocks.py", line 616, in astype
+    new_values = astype_array_safe(values, dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 238, in astype_array_safe
+    new_values = astype_array(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 183, in astype_array
+    values = _astype_nansafe(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 134, in _astype_nansafe
+    return arr.astype(dtype, copy=True)
+ValueError: could not convert string to float: 'T2257844554'
+
+
+Fix the python code above and return the new python code:
+2025-07-25 15:32:03 [INFO] Executing Step 1: CodeGenerator
+2025-07-25 15:32:07 [INFO] HTTP Request: POST https://aipipe.org/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-25 15:32:07 [INFO] Prompt used:
+            dfs[0]:
+  name: null
+  description: null
+  type: pd.DataFrame
+  rows: 50
+  columns: 6
+  schema:
+    fields:
+    - name: Rank
+      type: int64
+      samples:
+      - 50
+      - 22
+      - 46
+    - name: Peak
+      type: int64
+      samples:
+      - 1
+      - 34
+      - 44
+    - name: Title
+      type: object
+      samples:
+      - Moana 2
+      - 'Rogue One: A Star Wars Story'
+      - "Harry Potter and the Deathly Hallows \u2013 Part 2"
+    - name: Worldwide gross
+      type: object
+      samples:
+      - $1,045,713,802
+      - $1,338,073,645
+      - F$1,290,000,000
+    - name: Year
+      type: int64
+      samples:
+      - 2014
+      - 1999
+      - 2015
+    - name: Ref
+      type: object
+      samples:
+      - '[# 66][# 67]'
+      - '[# 49][# 47]'
+      - '[# 62][# 63]'
+
+
+The user asked the following question:
+### QUERY
+ How many $2 bn movies were released before 2020?
+### QUERY
+ Which is the earliest film that grossed over $1.5 bn?
+
+You generated this python code:
+df = dfs[0]
+df['Worldwide gross'] = df['Worldwide gross'].str.replace('$', '').str.replace(',', '').str.replace('F', '').astype(float)
+earliest_film_over_1_5bn = df[df['Worldwide gross'] > 1500000000].sort_values('Year').iloc[0]['Title']
+result = {'type': 'string', 'value': f'The earliest film that grossed over $1.5 billion is {earliest_film_over_1_5bn}.'}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 87, in execute
+    result = self.execute_code(input, code_context)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 172, in execute_code
+    exec(code, environment)
+  File "<string>", line 2, in <module>
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/generic.py", line 6534, in astype
+    new_data = self._mgr.astype(dtype=dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 414, in astype
+    return self.apply(
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 354, in apply
+    applied = getattr(b, f)(**kwargs)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/blocks.py", line 616, in astype
+    new_values = astype_array_safe(values, dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 238, in astype_array_safe
+    new_values = astype_array(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 183, in astype_array
+    values = _astype_nansafe(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 134, in _astype_nansafe
+    return arr.astype(dtype, copy=True)
+ValueError: could not convert string to float: 'T2257844554'
+
+
+Fix the python code above and return the new python code:
+            
+2025-07-25 15:32:07 [INFO] Code generated:
+            ```
+            import pandas as pd
+
+df = dfs[0]
+df['Worldwide gross'] = df['Worldwide gross'].str.replace('$', '').str.replace(',', '').str.replace('F', '').astype(float)
+earliest_film_over_1_5bn = df[df['Worldwide gross'] > 1500000000].sort_values('Year').iloc[0]['Title']
+result = {'type': 'string', 'value': f'The earliest film that grossed over $1.5 billion is {earliest_film_over_1_5bn}.'}
+            ```
+            
+2025-07-25 15:32:07 [INFO] Executing Step 2: CodeCleaning
+2025-07-25 15:32:07 [INFO] 
+Code running:
+```
+df = dfs[0]
+df['Worldwide gross'] = df['Worldwide gross'].str.replace('$', '').str.replace(',', '').str.replace('F', '').astype(float)
+earliest_film_over_1_5bn = df[df['Worldwide gross'] > 1500000000].sort_values('Year').iloc[0]['Title']
+result = {'type': 'string', 'value': f'The earliest film that grossed over $1.5 billion is {earliest_film_over_1_5bn}.'}
+        ```
+2025-07-25 15:32:07 [ERROR] Failed with error: Traceback (most recent call last):
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 87, in execute
+    result = self.execute_code(input, code_context)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandasai/pipelines/chat/code_execution.py", line 172, in execute_code
+    exec(code, environment)
+  File "<string>", line 2, in <module>
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/generic.py", line 6534, in astype
+    new_data = self._mgr.astype(dtype=dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 414, in astype
+    return self.apply(
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 354, in apply
+    applied = getattr(b, f)(**kwargs)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/internals/blocks.py", line 616, in astype
+    new_values = astype_array_safe(values, dtype, copy=copy, errors=errors)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 238, in astype_array_safe
+    new_values = astype_array(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 183, in astype_array
+    values = _astype_nansafe(values, dtype, copy=copy)
+  File "/home/himanshu09/tds/data-analyst-agent/venv310/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 134, in _astype_nansafe
+    return arr.astype(dtype, copy=True)
+ValueError: could not convert string to float: 'T2257844554'
+
+2025-07-25 15:32:07 [ERROR] Pipeline failed on step 6: could not convert string to float: 'T2257844554'
+2025-07-25 15:32:07 [INFO] Question: What's the correlation between the Rank and Peak?
+2025-07-25 15:32:07 [INFO] Running PandasAI with openai LLM...
+2025-07-25 15:32:07 [INFO] Prompt ID: 619bd12f-8d2f-4289-84aa-3b3027ab2090
+2025-07-25 15:32:07 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-07-25 15:32:07 [INFO] Executing Step 0: ValidatePipelineInput
+2025-07-25 15:32:07 [INFO] Executing Step 1: CacheLookup
+2025-07-25 15:32:07 [INFO] Using cached response
+2025-07-25 15:32:07 [INFO] Executing Step 2: PromptGeneration
+2025-07-25 15:32:07 [INFO] Executing Step 2: Skipping...
+2025-07-25 15:32:07 [INFO] Executing Step 3: CodeGenerator
+2025-07-25 15:32:07 [INFO] Executing Step 3: Skipping...
+2025-07-25 15:32:07 [INFO] Executing Step 4: CachePopulation
+2025-07-25 15:32:07 [INFO] Executing Step 4: Skipping...
+2025-07-25 15:32:07 [INFO] Executing Step 5: CodeCleaning
+2025-07-25 15:32:07 [INFO] 
+Code running:
+```
+data = {'Rank': [28, 5, 45], 'Peak': ['14', '3', '23RK'], 'Title': ['Beauty and the Beast', 'Jurassic Park', 'Barbie'], 'Worldwide gross': ['$1,347,280,838', '$1,342,139,727', '$1,495,696,292'], 'Year': [2016, 2013, 2014], 'Ref': ['[# 19][# 20]', '[# 61][# 38]', '[# 50][# 51]']}
+df = dfs[0]
+df['Peak'] = pd.to_numeric(df['Peak'], errors='coerce')
+correlation = df['Rank'].corr(df['Peak'])
+result = {'type': 'number', 'value': correlation}
+        ```
+2025-07-25 15:32:07 [INFO] Executing Step 6: CodeExecution
+2025-07-25 15:32:07 [INFO] Executing Step 7: ResultValidation
+2025-07-25 15:32:07 [INFO] Answer: {'type': 'number', 'value': 0.5275843984141044}
+2025-07-25 15:32:07 [INFO] Executing Step 8: ResultParsing
+2025-07-25 15:39:45 [INFO] Question: How many $2 bn movies were released before 2020?
+2025-07-25 15:39:45 [INFO] Running PandasAI with openai LLM...
+2025-07-25 15:39:45 [INFO] Prompt ID: 6c5e93b7-14d6-4799-b674-955871dafb6b
+2025-07-25 15:39:45 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-07-25 15:39:45 [INFO] Executing Step 0: ValidatePipelineInput
+2025-07-25 15:39:45 [INFO] Executing Step 1: CacheLookup
+2025-07-25 15:39:45 [INFO] Executing Step 2: PromptGeneration
+2025-07-25 15:39:45 [INFO] Using prompt: dfs[0]:
+  name: null
+  description: null
+  type: pd.DataFrame
+  rows: 50
+  columns: 5
+  schema:
+    fields:
+    - name: Rank
+      type: int64
+      samples:
+      - 47
+      - 8
+      - 27
+    - name: Title
+      type: object
+      samples:
+      - Frozen
+      - The Avengers
+      - Furious 7
+    - name: Worldwide gross
+      type: object
+      samples:
+      - '3202254125'
+      - '9576645942'
+      - '7207595228'
+    - name: Year
+      type: int64
+      samples:
+      - 2018
+      - 1999
+      - 1997
+    - name: Peak
+      type: int64
+      samples:
+      - 11
+      - 5
+      - 24
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many $2 bn movies were released before 2020?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2025-07-25 15:39:45 [INFO] Executing Step 3: CodeGenerator
+2025-07-25 15:39:51 [INFO] HTTP Request: POST https://aipipe.org/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-25 15:39:51 [INFO] Prompt used:
+            dfs[0]:
+  name: null
+  description: null
+  type: pd.DataFrame
+  rows: 50
+  columns: 5
+  schema:
+    fields:
+    - name: Rank
+      type: int64
+      samples:
+      - 47
+      - 8
+      - 27
+    - name: Title
+      type: object
+      samples:
+      - Frozen
+      - The Avengers
+      - Furious 7
+    - name: Worldwide gross
+      type: object
+      samples:
+      - '3202254125'
+      - '9576645942'
+      - '7207595228'
+    - name: Year
+      type: int64
+      samples:
+      - 2018
+      - 1999
+      - 1997
+    - name: Peak
+      type: int64
+      samples:
+      - 11
+      - 5
+      - 24
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many $2 bn movies were released before 2020?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2025-07-25 15:39:51 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+
+# Filter the dataframe to include only movies with worldwide gross of $2 billion or more and released before 2020
+filtered_df = dfs[0][(dfs[0]['Worldwide gross'].astype(int) >= 2000000000) & (dfs[0]['Year'] < 2020)]
+
+# Count the number of $2 bn movies released before 2020
+num_2bn_movies_before_2020 = filtered_df.shape[0]
+
+# Declare result variable
+result = {
+    "type": "string",
+    "value": f"The number of $2 billion movies released before 2020 is: {num_2bn_movies_before_2020}"
+}
+            ```
+            
+2025-07-25 15:39:51 [INFO] Executing Step 4: CachePopulation
+2025-07-25 15:39:51 [INFO] Executing Step 5: CodeCleaning
+2025-07-25 15:39:51 [INFO] 
+Code running:
+```
+filtered_df = dfs[0][(dfs[0]['Worldwide gross'].astype(int) >= 2000000000) & (dfs[0]['Year'] < 2020)]
+num_2bn_movies_before_2020 = filtered_df.shape[0]
+result = {'type': 'string', 'value': f'The number of $2 billion movies released before 2020 is: {num_2bn_movies_before_2020}'}
+        ```
+2025-07-25 15:39:51 [INFO] Executing Step 6: CodeExecution
+2025-07-25 15:39:51 [INFO] Executing Step 7: ResultValidation
+2025-07-25 15:39:51 [INFO] Answer: {'type': 'string', 'value': 'The number of $2 billion movies released before 2020 is: 6'}
+2025-07-25 15:39:51 [INFO] Executing Step 8: ResultParsing
+2025-07-25 15:39:51 [INFO] Question: Which is the earliest film that grossed over $1.5 bn?
+2025-07-25 15:39:51 [INFO] Running PandasAI with openai LLM...
+2025-07-25 15:39:51 [INFO] Prompt ID: b4ee3816-1ff0-4689-b62e-531259f44c3c
+2025-07-25 15:39:51 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-07-25 15:39:51 [INFO] Executing Step 0: ValidatePipelineInput
+2025-07-25 15:39:51 [INFO] Executing Step 1: CacheLookup
+2025-07-25 15:39:51 [INFO] Executing Step 2: PromptGeneration
+2025-07-25 15:39:51 [INFO] Using prompt: dfs[0]:
+  name: null
+  description: null
+  type: pd.DataFrame
+  rows: 50
+  columns: 5
+  schema:
+    fields:
+    - name: Rank
+      type: int64
+      samples:
+      - 47
+      - 8
+      - 27
+    - name: Title
+      type: object
+      samples:
+      - Frozen
+      - The Avengers
+      - Furious 7
+    - name: Worldwide gross
+      type: object
+      samples:
+      - '3202254125'
+      - '9576645942'
+      - '7207595228'
+    - name: Year
+      type: int64
+      samples:
+      - 2018
+      - 1999
+      - 1997
+    - name: Peak
+      type: int64
+      samples:
+      - 11
+      - 5
+      - 24
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ Which is the earliest film that grossed over $1.5 bn?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2025-07-25 15:39:51 [INFO] Executing Step 3: CodeGenerator
+2025-07-25 15:39:53 [INFO] HTTP Request: POST https://aipipe.org/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-25 15:39:53 [INFO] Prompt used:
+            dfs[0]:
+  name: null
+  description: null
+  type: pd.DataFrame
+  rows: 50
+  columns: 5
+  schema:
+    fields:
+    - name: Rank
+      type: int64
+      samples:
+      - 47
+      - 8
+      - 27
+    - name: Title
+      type: object
+      samples:
+      - Frozen
+      - The Avengers
+      - Furious 7
+    - name: Worldwide gross
+      type: object
+      samples:
+      - '3202254125'
+      - '9576645942'
+      - '7207595228'
+    - name: Year
+      type: int64
+      samples:
+      - 2018
+      - 1999
+      - 1997
+    - name: Peak
+      type: int64
+      samples:
+      - 11
+      - 5
+      - 24
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ Which is the earliest film that grossed over $1.5 bn?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2025-07-25 15:39:53 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+earliest_movie_over_1_5bn = None
+for df in dfs:
+    for index, row in df.iterrows():
+        worldwide_gross = float(row['Worldwide gross'])
+        if worldwide_gross >= 1.5e9:
+            if earliest_movie_over_1_5bn is None or row['Year'] < earliest_movie_over_1_5bn['Year']:
+                earliest_movie_over_1_5bn = row
+
+result = {"type": "string", "value": f"The earliest film that grossed over $1.5 billion is {earliest_movie_over_1_5bn['Title']} released in {earliest_movie_over_1_5bn['Year']}."}
+            ```
+            
+2025-07-25 15:39:53 [INFO] Executing Step 4: CachePopulation
+2025-07-25 15:39:54 [INFO] Executing Step 5: CodeCleaning
+2025-07-25 15:39:54 [INFO] 
+Code running:
+```
+earliest_movie_over_1_5bn = None
+for df in dfs:
+    for index, row in df.iterrows():
+        worldwide_gross = float(row['Worldwide gross'])
+        if worldwide_gross >= 1500000000.0:
+            if earliest_movie_over_1_5bn is None or row['Year'] < earliest_movie_over_1_5bn['Year']:
+                earliest_movie_over_1_5bn = row
+result = {'type': 'string', 'value': f"The earliest film that grossed over $1.5 billion is {earliest_movie_over_1_5bn['Title']} released in {earliest_movie_over_1_5bn['Year']}."}
+        ```
+2025-07-25 15:39:54 [INFO] Executing Step 6: CodeExecution
+2025-07-25 15:39:54 [INFO] Executing Step 7: ResultValidation
+2025-07-25 15:39:54 [INFO] Answer: {'type': 'string', 'value': 'The earliest film that grossed over $1.5 billion is Titanic released in 1997.'}
+2025-07-25 15:39:54 [INFO] Executing Step 8: ResultParsing
+2025-07-25 15:39:54 [INFO] Question: What's the correlation between the Rank and Peak?
+2025-07-25 15:39:54 [INFO] Running PandasAI with openai LLM...
+2025-07-25 15:39:54 [INFO] Prompt ID: 87fe4a59-9ea5-42af-8633-687f8094800b
+2025-07-25 15:39:54 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-07-25 15:39:54 [INFO] Executing Step 0: ValidatePipelineInput
+2025-07-25 15:39:54 [INFO] Executing Step 1: CacheLookup
+2025-07-25 15:39:54 [INFO] Executing Step 2: PromptGeneration
+2025-07-25 15:39:54 [INFO] Using prompt: dfs[0]:
+  name: null
+  description: null
+  type: pd.DataFrame
+  rows: 50
+  columns: 5
+  schema:
+    fields:
+    - name: Rank
+      type: int64
+      samples:
+      - 47
+      - 8
+      - 27
+    - name: Title
+      type: object
+      samples:
+      - Frozen
+      - The Avengers
+      - Furious 7
+    - name: Worldwide gross
+      type: object
+      samples:
+      - '3202254125'
+      - '9576645942'
+      - '7207595228'
+    - name: Year
+      type: int64
+      samples:
+      - 2018
+      - 1999
+      - 1997
+    - name: Peak
+      type: int64
+      samples:
+      - 11
+      - 5
+      - 24
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ What's the correlation between the Rank and Peak?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2025-07-25 15:39:54 [INFO] Executing Step 3: CodeGenerator
+2025-07-25 15:39:56 [INFO] HTTP Request: POST https://aipipe.org/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-25 15:39:56 [INFO] Prompt used:
+            dfs[0]:
+  name: null
+  description: null
+  type: pd.DataFrame
+  rows: 50
+  columns: 5
+  schema:
+    fields:
+    - name: Rank
+      type: int64
+      samples:
+      - 47
+      - 8
+      - 27
+    - name: Title
+      type: object
+      samples:
+      - Frozen
+      - The Avengers
+      - Furious 7
+    - name: Worldwide gross
+      type: object
+      samples:
+      - '3202254125'
+      - '9576645942'
+      - '7207595228'
+    - name: Year
+      type: int64
+      samples:
+      - 2018
+      - 1999
+      - 1997
+    - name: Peak
+      type: int64
+      samples:
+      - 11
+      - 5
+      - 24
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ What's the correlation between the Rank and Peak?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2025-07-25 15:39:56 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+df = dfs[0]
+
+# Calculate correlation between Rank and Peak
+correlation = df['Rank'].corr(df['Peak'])
+
+# Declare result var
+result = {
+    "type": "string",
+    "value": f"The correlation between Rank and Peak is: {correlation}"
+}
+            ```
+            
+2025-07-25 15:39:56 [INFO] Executing Step 4: CachePopulation
+2025-07-25 15:39:56 [INFO] Executing Step 5: CodeCleaning
+2025-07-25 15:39:56 [INFO] 
+Code running:
+```
+df = dfs[0]
+correlation = df['Rank'].corr(df['Peak'])
+result = {'type': 'string', 'value': f'The correlation between Rank and Peak is: {correlation}'}
+        ```
+2025-07-25 15:39:56 [INFO] Executing Step 6: CodeExecution
+2025-07-25 15:39:56 [INFO] Executing Step 7: ResultValidation
+2025-07-25 15:39:56 [INFO] Answer: {'type': 'string', 'value': 'The correlation between Rank and Peak is: 0.5275843984141044'}
+2025-07-25 15:39:56 [INFO] Executing Step 8: ResultParsing

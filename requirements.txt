@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+pandas
+matplotlib
+openai
+pandasai
+lxml
+beautifulsoup4
+seaborn
+duckdb
+python-multipart
